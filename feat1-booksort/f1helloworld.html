@@ -2,11 +2,18 @@
 
 <html>
 
+  <header id="pageHeader" class="pageHeader"> 
+    <img src="Icon.png" class=".icon" align=center> </img>    
+    <h1 class=".title" align=center>  Hello world! </h1>    
+  </header>  
+
 <body>
 
-  <header id="pageHeader" class="pageHeader"> 
-    <img src="Icon.png" class=".icon"> </img>    <h1 class=".title">  Hello world! </h1>    <button class=".button" onclick="search()" title="Search">  </button>
-  </header>  
+  <form action="booksort.js/Search(document.getElementById('criteria').value)">
+    <label for="fname"> Search: </label>
+    <input type="text" id="criteria" name="fname"><br><br>
+    <input type="submit" value="Search">
+  </form>
 
 </body>
 
