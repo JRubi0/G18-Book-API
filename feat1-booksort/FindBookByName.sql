@@ -1,0 +1,1 @@
+SELECT Title FROM book WHERE Title like "";
