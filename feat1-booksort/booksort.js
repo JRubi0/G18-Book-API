@@ -1,6 +1,10 @@
 function datasearch(criteria) {
     //Find text entered from search box through SQL query
+<<<<<<< HEAD
     var pg = require('pg');
+=======
+    var pg = require(pg);
+>>>>>>> 97a24c4d83ea814c4c31afb63ca8654e847a98d3
     var connectionString = "postgres://postgres:Skwip2@(0)@localhost/127.0.0.1:5432/BookStore";
     var pgClient = new pg.Client(connectionString);
     pgClient.connect();
