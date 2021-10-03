@@ -1,0 +1,24 @@
+.star{
+    color: rgb(255, 51, 129);
+    font-size: 2.0rem;
+    padding: 0 1rem;
+  }
+  .star::before{
+    content: '\2606';  
+    cursor: pointer;
+  }
+  .star.rated::before{
+    content: '\2605'; 
+  }
+  
+  .stars{
+      counter-reset: rateme 0;   
+      font-size: 2.0rem;
+      font-weight: 900;
+  }
+  .star.rated{
+      counter-increment: rateme 1;
+  }
+  .stars::after{
+      content: counter(rateme) '/5';
+  }
