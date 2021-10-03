@@ -188,8 +188,8 @@ h3{
 
   body 
   { 
-    background-image: src="feat4-bookdetails\img\booksbg.jpg"; 
-    background-position: centerr; 
+    background-image: url("feat4-bookdetails\img\booksbg.jpg"); 
+    background-position: center; 
     background-repeat: no-repeat;
     background-size: 100%; 
   }
