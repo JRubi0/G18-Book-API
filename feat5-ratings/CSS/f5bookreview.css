@@ -1,3 +1,11 @@
+body 
+{ 
+  background-image: url("../Pictures/librarybackground.jpg"); 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: 150%; 
+} 
+
 .star{
     color: rgb(255, 51, 129);
     font-size: 2.0rem;
@@ -49,10 +57,3 @@
     font-size: 35px;
   }
 
-  body 
-  { 
-    background-image: url("file:///D:/School!/FALL%202021/CEN%204010/G18-Book-API/feat5-ratings/Pictures/librarybackground.jpeg"); 
-    background-position: centerr; 
-    background-repeat: no-repeat;
-    background-size: 100%; 
-  } 
