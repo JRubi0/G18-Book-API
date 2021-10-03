@@ -1,0 +1,58 @@
+.star{
+    color: rgb(255, 51, 129);
+    font-size: 2.0rem;
+    padding: 0 1rem;
+  }
+  .star::before{
+    content: '\2606';  
+    cursor: pointer;
+  }
+  .star.rated::before{
+    content: '\2605'; 
+  }
+  
+  .stars{
+      counter-reset: rateme 0;   
+      font-size: 2.0rem;
+      font-weight: 900;
+      text-align: center;
+      background: #000000;
+      color: white;
+  }
+  .star.rated{
+      counter-increment: rateme 1;
+  }
+  .stars::after{
+      content: counter(rateme) '/5';
+  }
+
+  .header {
+    padding: 1px;
+    text-align: center;
+    background: #000000;
+    color: white;
+    font-size: 30px;
+  }
+
+  input[type=text] {
+    width: 50%;
+    padding: 100px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    color: black;
+    font-size: 20px;
+  }
+
+  .comment {
+    text-align: center;
+    color: white;
+    font-size: 35px;
+  }
+
+  body 
+  { 
+    background-image: url("file:///D:/School!/FALL%202021/CEN%204010/G18-Book-API/feat5-ratings/Pictures/librarybackground.jpeg"); 
+    background-position: centerr; 
+    background-repeat: no-repeat;
+    background-size: 100%; 
+  } 
