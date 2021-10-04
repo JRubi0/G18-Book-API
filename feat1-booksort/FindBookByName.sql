@@ -1,1 +1,1 @@
-SELECT Title FROM book WHERE Title like "";
+SELECT Title FROM book;
