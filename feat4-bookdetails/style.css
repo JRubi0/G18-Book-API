@@ -1,9 +1,19 @@
+body 
+{ 
+    background-image: url("img/booksbg.jpg"); 
+    background-color: #cccccc;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: 100%; 
+}
+
 .content{
   width:85%;
   margin: 2em auto;
   font-family: 'bree_serifregular';
 }
 .half{
+  background: #f0f0f0;
   float: left;
   margin: 1%;
   padding: 0 2%;
@@ -13,6 +23,7 @@
   width: 56%;
 }
 #second-half{
+ 
   border: 1px solid;
   width: 28%;
 }
@@ -186,12 +197,5 @@ h3{
     margin: 2em 0;
   }
 
-  body 
-  { 
-    background-image: src="feat4-bookdetails\img\booksbg.jpg"; 
-    background-position: centerr; 
-    background-repeat: no-repeat;
-    background-size: 100%; 
-  }
-
+  
 }
