@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <php>
+  $conn = mysqli_connect("localhost", "root", "", "company");
+// Check connection
+if ($conn->connect_error) {
+die("Connection failed: " . $conn->connect_error);
+}
+</php>
 </head>
 
 
