@@ -1,21 +1,13 @@
-/*const {Client} = require('pg')
-
-const client = new Client({
-    host: "archegos.ddns.net",
-    user: "juanrubio",
-    port: 5432,
-    password: "Group18",
-    database: "BookStore"
-})
-
-module.exports = client
+const client = require('../server.js')
+const conn = require('../connection.js')
 
 const express = require('express');
 const app = express();
 
-app.listen(3300, ()=>{
+
+/*app.listen(3300, ()=>{
     console.log("Sever is running on port 3300");
-})
+}) 
 
 client.connect(); */
 
