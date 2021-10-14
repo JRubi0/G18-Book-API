@@ -10,9 +10,9 @@ app.listen(3300, ()=>{
 client.connect();
 //---------------------------//
 
-app.get('/book/:book_id', (req, res)=>
+app.get('/book', (req, res)=>
 {
-    client.query(`SELECT * from book where book_id=${req.params.book_id}`, (err, result)=>
+    client.query(`SELECT * from book`, (err, result)=>
     {
         if(!err){
             res.send(result.rows);
