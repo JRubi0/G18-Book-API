@@ -2,16 +2,29 @@
 // If two scripts have the same port, the scripts will not work! -//
 const PORT = 3300;
 
-//--This just creates a local server for --//
+//--This just creates a local server for running queries on.--//
 const client = require('../scripts/server.js');
+
+const path = require("path");
 
 const express = require('express');
 const app = express();
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
 app.listen(PORT, ()=>{
-    console.log("Sever is running on port " + PORT);
+    console.log("Sever is listening on port " + PORT);
 })
 //---------------------------//
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../index.html"));
+  });
+
+app.get("/bookdetails", (req, res) => {
+    res.sendFile(path.join(__dirname, "bookdetails.html"));
+});
 
 app.get('/book', (req, res)=>
 {
