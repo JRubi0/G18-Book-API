@@ -10,8 +10,8 @@ const path = require("path");
 const express = require('express');
 const app = express();
 
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+/*const bodyParser = require("body-parser");
+app.use(bodyParser.json());*/
 
 app.listen(PORT, ()=>{
     console.log("Sever is listening on port " + PORT);
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../index.html"));
   });
 
-app.get("/bookdetails", (req, res) => {
+app.get("/book/bookdetails.html", (req, res) => {
     res.sendFile(path.join(__dirname, "bookdetails.html"));
 });
 
