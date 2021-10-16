@@ -1,15 +1,29 @@
-<!DOCTYPE HTML>
+<?php
+  include '../scripts/db.php'
+?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="UTF-8">
+  <script src="../scripts/jquery.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script>
+
+  </script> 
 </head>
 
 <body>
   <div class="content">
       <div id="first-half" class="half">
-        <span class="parenth1">Book Title</span>
+        <span class="parenth1">
+          <?php
+            $sql = "SELECT title from book where book_id='".$book_id."'";
+            $row = pg_fetch_assoc($result);
+            $result = pg_query($conn, $sql);
+            echo $row;
+          ?>
+          </span>
           <div class="subtitle">     </div>
           <div class="subtitle">October 2, 2021, </div>
           <div class="subtitle">Hardcover</div>
@@ -42,8 +56,8 @@
         <h4>Books Sold:</h4>
       </div>
   </div>
-  <script src="../scripts/jquery.js"></script>
-  <script src="/f4scripts/resize.js"></script>
-  <script src="/f4scripts/accordion.js"></script>
+  <script src="./f4scripts/resize.js"></script>
+  <script src="./f4scripts/accordion.js"></script>
+
   </body>
 </html>
