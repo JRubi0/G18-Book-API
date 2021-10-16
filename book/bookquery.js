@@ -10,12 +10,20 @@ const path = require("path");
 const express = require('express');
 const app = express();
 
-/*const bodyParser = require("body-parser");
-app.use(bodyParser.json());*/
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
 
 app.listen(PORT, ()=>{
     console.log("Sever is listening on port " + PORT);
 })
+
+client.connect();
+//---------------------------//
+
+app.get("/scripts/jquery.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "../scripts/jquery.js"));
+});
+
 //---------------------------//
 
 app.get("/", (req, res) => {
@@ -24,6 +32,18 @@ app.get("/", (req, res) => {
 
 app.get("/book/bookdetails.html", (req, res) => {
     res.sendFile(path.join(__dirname, "bookdetails.html"));
+});
+
+app.get("/f4scripts/resize.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "f4scripts/resize.js"));
+});
+
+app.get("/f4scripts/accordion.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "f4scripts/accordion.js"));
+});
+
+app.get("/f4scripts/accordion.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "f4scripts/accordion.js"));
 });
 
 app.get('/book', (req, res)=>
@@ -36,7 +56,7 @@ app.get('/book', (req, res)=>
     });
     client.end;
 })
-client.end;
+
 
 app.get('/book/:book_id', (req, res)=>
 {
