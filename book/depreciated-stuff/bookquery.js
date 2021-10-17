@@ -4,13 +4,15 @@ using .js doesn't really work for querying and sending data between a server and
 
 We will be having to use .php for our project going forward. 
 
+The index.php file works as a homepage. Click Feature 4 - Details to test my feature.
+
 Check out my bookdetails.php to see how I set up some GET queries. 
 
-The index.html file 
+
 
 The f4scripts folder just has some scripts for the minimized window content and the accordion drop down for the reviews.
 
-The author and genre folders have some dummy HTML pages I was using for testing layouts and links. Don't use these, they'll be deleted soon!
+The depreciated-stuff folder has old files from when I tried running the server on .js backend. Don't use these, they'll be deleted soon!
 
 
 

@@ -36,23 +36,35 @@
             echo $newDate;
             ?> , </div>
           <div class="subtitle">     </div>
-          <div class="subtitle">0/5 Stars</div>
+          <div class="subtitle">0/5 Stars</div> <!--Rating average should be added here when feature is ready-->
         
-      <h2>by <a href="author\author.html">
-        <?php
-            $result = pg_query($con, " SELECT author_name FROM author WHERE author_id = (SELECT author_id FROM book_author WHERE book_id = $book_id)"); //Author query
+      <h2> 
+        by <?php //Look at this later, remember to update the db
+            $result = pg_query($con, " SELECT author_id FROM book_author WHERE book_id = $book_id"); //Author query, clicking on author name returns search function link
             $row = pg_fetch_assoc($result);
-            echo "$row[author_name]";
-        ?></a></h2>
-      <p><a href="genre\genrepage.html">
-            <?php
-            $result = pg_query($con, " SELECT genre FROM book WHERE book_id = $book_id"); //Genre query
+            $author_id ="$row[author_id]";
+
+            $result2 = pg_query($con, " ((SELECT author_name FROM author WHERE author_id = (SELECT author_id FROM book_author WHERE book_id = $book_id LIMIT 1)) ORDER BY author_id ASC);");
+            $row = pg_fetch_assoc($result2);
+            
+            echo "<a href='search/searchresults.php?author=$author_id'>$row[author_name]</a>"; 
+
+        ?></h2>
+      <p><?php
+            $result = pg_query($con, " SELECT genre FROM book WHERE book_id = $book_id"); //Genre query, clicking on genre name returns search function link
             $row = pg_fetch_assoc($result);
-            echo "$row[title]";
-            ?></a>
+            $genre ="$row[genre]";
+            $uppercase_genre = ucfirst($genre);
+
+            echo "<a href='search/searchresults.php?genre=$genre'>$uppercase_genre</a>"; 
+          ?>
       <h2>   </h2>
         <div class="no-change">
-          <p>This is a sample book synopsis! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p><?php 
+            $result = pg_query($con, " SELECT descr FROM book WHERE book_id = $book_id"); //Description query
+            $row = pg_fetch_assoc($result);
+            echo "$row[descr]"; 
+            ?></p>
         </div>
       <h2> </h2>
         <button class="accordion">Reviews</button>
@@ -64,12 +76,29 @@
         <div class="book-cover">
         <img src="https://www.jimkarol.com/wp-content/uploads/2017/03/book.jpg" />
         </div>
-        <h2 class="cart">Add to Cart</h2>
-        <h2 class="wishlist">Add to Wishlist</h2>
-        <h3>$99.99</h3>
-        <h4>ISBN:</h4>
-        <h4>Published:</h4>
-        <h4>Books Sold:</h4>
+        <div class="cart"><?php echo "<a href='/cart/cart.php?addbook=$book_id'>Add to Cart</a>" ?></div>
+        <div class="wishlist"><?php echo "<a href='/wishlist/wishlist.php?addbook=$book_id'>Add to Wish List</a>" ?></div>
+        <h3>
+          $<?php
+            $result = pg_query($con, " SELECT price FROM order_line WHERE book_id = $book_id"); //Price query
+            $row = pg_fetch_assoc($result);
+            echo "$row[price]";
+          ?></h3>
+        <div class="parenth1">ISBN: <div class ="subtitle"><?php 
+              $result = pg_query($con, " SELECT isbn13 FROM book WHERE book_id = $book_id"); //ISBN query
+              $row = pg_fetch_assoc($result);
+              echo "$row[isbn13]"; 
+        ?></div></div>
+        <div class="parenth1">Publisher: <div class ="subtitle"><?php 
+              $result = pg_query($con, " SELECT publisher_name FROM publisher WHERE publisher_id = (SELECT publisher_id FROM book WHERE book_id = $book_id)"); //Publisher query
+              $row = pg_fetch_assoc($result);
+              echo "$row[publisher_name]"; 
+        ?></div></div>
+        <div class="parenth1">Books Sold: <div class ="subtitle"><?php 
+              $result = pg_query($con, " SELECT copies_sold FROM book WHERE book_id = $book_id"); //Publisher query
+              $row = pg_fetch_assoc($result);
+              echo "$row[copies_sold]"; 
+        ?></div></div>
       </div>
   </div>
   <script src="./f4scripts/resize.js"></script>
