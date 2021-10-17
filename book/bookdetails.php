@@ -14,24 +14,42 @@
 </head>
 
 <body>
+  <?php
+  $book_id = $_GET['book'];
+  ?>
   <div class="content">
       <div id="first-half" class="half">
         <span class="parenth1">
           <?php
-            $sql = "SELECT title from book where book_id='".$book_id."'";
+            $result = pg_query($con, " SELECT title FROM book WHERE book_id = $book_id"); //Title query
             $row = pg_fetch_assoc($result);
-            $result = pg_query($conn, $sql);
-            echo $row;
+            echo "$row[title]";
           ?>
           </span>
           <div class="subtitle">     </div>
-          <div class="subtitle">October 2, 2021, </div>
-          <div class="subtitle">Hardcover</div>
+          <div class="subtitle">
+            <?php
+            $result = pg_query($con, " SELECT publication_date FROM book WHERE book_id = $book_id");  //Date query
+            $row = pg_fetch_assoc($result);
+            $originalDate = "$row[publication_date]";
+            $newDate = date("d-m-Y", strtotime($originalDate));
+            echo $newDate;
+            ?> , </div>
           <div class="subtitle">     </div>
           <div class="subtitle">0/5 Stars</div>
         
-      <h2>by <a href="author\author.html">Sample Author</a></h2>
-      <p><a href="genre\genrepage.html">Suspense</a>, <a href="genre\genrepage.html">Drama</a>, <a href="genre\genrepage.html">Romance</a></p>
+      <h2>by <a href="author\author.html">
+        <?php
+            $result = pg_query($con, " SELECT author_name FROM author WHERE author_id = (SELECT author_id FROM book_author WHERE book_id = $book_id)"); //Author query
+            $row = pg_fetch_assoc($result);
+            echo "$row[author_name]";
+        ?></a></h2>
+      <p><a href="genre\genrepage.html">
+            <?php
+            $result = pg_query($con, " SELECT genre FROM book WHERE book_id = $book_id"); //Genre query
+            $row = pg_fetch_assoc($result);
+            echo "$row[title]";
+            ?></a>
       <h2>   </h2>
         <div class="no-change">
           <p>This is a sample book synopsis! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -45,14 +63,12 @@
       <div id="second-half" class="half">
         <div class="book-cover">
         <img src="https://www.jimkarol.com/wp-content/uploads/2017/03/book.jpg" />
-        <img class="order-now" src="https://www.jimkarol.com/wp-content/uploads/2017/03/order.png" />
         </div>
         <h2 class="cart">Add to Cart</h2>
         <h2 class="wishlist">Add to Wishlist</h2>
         <h3>$99.99</h3>
         <h4>ISBN:</h4>
         <h4>Published:</h4>
-        <h4>Pages:</h4>
         <h4>Books Sold:</h4>
       </div>
   </div>
