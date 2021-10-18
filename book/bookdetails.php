@@ -34,7 +34,7 @@
             $originalDate = "$row[publication_date]";
             $newDate = date("d-m-Y", strtotime($originalDate));
             echo $newDate;
-            ?> , </div>
+            ?>  </div>
           <div class="subtitle">     </div>
           <div class="subtitle">0/5 Stars</div> <!--Rating average should be added here when feature is ready-->
         

@@ -2,7 +2,7 @@
 
 $host = "archegos.ddns.net";
 $port = "5432";
-$user = "juanrubio";
+$user = "client";
 $password = "Group18";
 $dbname = "BookStore";
 
