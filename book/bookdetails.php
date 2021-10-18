@@ -1,5 +1,60 @@
+<!--
+  This file creates the book details page and queries the PostgreSQL database for book info. 
+
+  Since it turns out that .js doesn't really work for querying and sending data between a server and a website, 
+  we will be having to use .php for our project going forward. 
+
+
+  You MUST be connected to your Apache localhost:3300 server from XAMPP in
+  order this .php for this to work.
+
+
+
+  Use .php pages instead of .html pages since this lets you communicate with the server.
+      .js files are used for running external scripts inside your .php page. 
+        You can include them in your file by putting <script src="../scripts/(scriptpathgoeshere)"></script> under your <html></html> tags.
+
+  PHP code must be under <.?php (code goes here) ?> tags! (remove the period behind the <)
+    
+
+
+  >>To connect a webpage to the database, you MUST include the database connect script at the top of the page!<<
+
+
+
+  I included jQuery into our filesystem since it helps with AJAX (javascript function to help pages load content without having to refresh)
+  and other features you might find helpful.
+  To include jQuery in your .php, copy and paste this line below the database connect script.
+
+  <!DOCTYPE HTML>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="../scripts/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+
+
+  Any other scripts should be loaded at the very end of the </body> tag, Like <script></script> </body>
+  --------------------------------------------------------------------------------------------------------
+
+  How to get a webpage to change depending on URL parameters?
+
+  When testing this bookdetails.php page, you'd notice that the URL comes back as: http://localhost:3300/book/bookdetails.php?book=1
+  
+  Breaking down this URL:
+     http://localhost:3300/ connects you to a localhost server running our website
+
+     /book/ is this folder, which can be accessed on the website to open .php files inside it.
+
+
+
+
+  Feel free to copy code for your own features!
+-->
+
 <?php
-  include '../scripts/db.php'
+  include '../scripts/db.php' //Database connect script (put this at the top of your page)
 ?>
 
 <!DOCTYPE HTML>
@@ -8,9 +63,6 @@
   <meta charset="UTF-8">
   <script src="../scripts/jquery.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script>
-
-  </script> 
 </head>
 
 <body>
