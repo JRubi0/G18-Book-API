@@ -1,8 +1,16 @@
-<!DOCTYPE html>
+<!--This file is a sample page format we should be using in all of our pages. Feel free to copy this to create new pages!-->
+<!--Page top hotbar-->
+<?php
+  include '../scripts/db.php' //Database connect script (put this at the top of your page)
+?>
+
+<!DOCTYPE HTML>
+<html>
 <head>
-    <title> Geek Text My Cart</title>
+    <title>Header Text goes here</title>
     <link rel = "stylesheet" type = "text/css" href = "./stylecopy.css">
-    <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet" >
+    <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+    <script src="../scripts/jquery.js"></script>  <!--Includes JQuery-->
 </head>
 
 <body>
@@ -11,7 +19,7 @@
             <img src = "assets/logo.png" alt = "logo" class = "logo"> <!--FIX ME-->
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li> <!--replace # with other pages-->
+                    <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
                     <li><a href="#">Search</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Profile</a></li>
@@ -23,6 +31,7 @@
     <div>
 
     </div>
+<!--End of page hotbar-->
 
     <div class = "ShoppingCartContainer">
         <div class = "CartHeader">
