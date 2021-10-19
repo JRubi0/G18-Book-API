@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Shopping Cart</title>
-    <link rel = "stylesheet" type = "text/css" href = "./stylecopy.css">
+    <link rel = "stylesheet" type = "text/css" href = "../css/globalFormat.css">
     <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
     <script src="../scripts/jquery.js"></script>  <!--Includes JQuery-->
 </head>
@@ -14,7 +14,7 @@
 <body>
     <header> 
         <div class = "container">
-            <img src = "assets/logo.png" alt = "logo" class = "logo"> <!--FIX ME-->
+            <img src = "/assets/logo.png" alt = "logo" class = "logo"> <!--FIX ME-->
             <nav>
                 <ul>
                     <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->

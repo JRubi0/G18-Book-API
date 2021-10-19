@@ -1,30 +1,104 @@
+
 body {
-    margin: 0;
+	margin: 0;
+	background: #222;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 800;
     padding: 0;
-    /* background: linear-gradient(to bottom right, #E3F0FF, #166b6b); */
+	padding-bottom: 55px;
     background-image: url(/assets/Bookshelf.jpg);
-    background-color: #cccccc;
+    background-color: #eceaea;
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    /* height: 100vh;*/
     display: felx;
     justify-content: center;
     align-items: center;
 }
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+header {
+  background: #ffffff;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: left;
+  block-size: 70px;
+  padding: 0px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+
+/*body*/
 .ShoppingCartContainer{
     width: 75%;
     height: 85%;
+	padding-top: 5px;
     opacity: 95%;
     margin: auto;
     background-color: #eceaea;
     border-radius: 20px;
-    box-shadow: 0px 10px 20px #1687d933; 
+	border-style: solid;
+	border-color: #000000;
 }
 
-.Header{
+.CartHeader{
 	margin: auto;
 	width: 90%;
 	height: 15%;
