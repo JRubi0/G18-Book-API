@@ -1,6 +1,6 @@
 <!--Page top hotbar-->
 <?php
-  include '/scripts/db.php' //Database connect script (put this at the top of your page)
+  include 'scripts/db.php' //Database connect script (put this at the top of your page)
 ?>
 
 <!DOCTYPE HTML>
@@ -22,7 +22,7 @@
                     <li><a href="#">Search</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Checkout</a></li>
+                    <li><a href="cart/shoppingcart.php">Checkout</a></li>
                 </ul>
             </nav>
         </div>     
@@ -33,11 +33,14 @@
 <!--End of page hotbar-->
 
 <body>
-    <p><a href="feat1-booksort\f1helloworld.html">Feature 1 - Sort</a></p>
-    <p><a href="feat2-profilemanage\f2helloworld.html">Feature 2 - Profile Management</a></p>
-    <p><a href="/cart/shoppingcart.php">Feature 3 - Shopping Cart</a></p>
-    <p><a href="/book/bookdetails.php?book=1">Feature 4 - Details</a></p>
-    <p><a href="feat5-ratings\f5bookreview.html">Feature 5 - Ratings</a></p>
+<div class = "ShoppingCartContainer">
+        <div class = "CartHeader">
+            <p><a href="feat1-booksort\f1helloworld.html">Feature 1 - Sort</a></p>
+            <p><a href="feat2-profilemanage\f2helloworld.html">Feature 2 - Profile Management</a></p>
+            <p><a href="/cart/shoppingcart.php">Feature 3 - Shopping Cart</a></p>
+            <p><a href="/book/bookdetails.php?book=1">Feature 4 - Details</a></p>
+            <p><a href="feat5-ratings\f5bookreview.html">Feature 5 - Ratings</a></p>
+        </div>    
 </body>
 
 </html>

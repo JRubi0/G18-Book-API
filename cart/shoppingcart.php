@@ -21,7 +21,7 @@
                     <li><a href="#">Search</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Checkout</a></li>
+                    <li><a href="shoppingcart.php">Checkout</a></li>
                 </ul>
             </nav>
         </div>     
