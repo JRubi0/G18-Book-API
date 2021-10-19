@@ -1,0 +1,19 @@
+To link to another page in html/php, you can use this example: 
+<a href='book/bookdetails.php?book=1'> Go to Book 1 </a>
+
+This creates a link to http://localhost:3300/book/bookdetails.php?book=1
+
+Breaking that down:
+    book, links to the book folder
+    bookdetails.php, the webpage file
+    ?book=1, parameter that gets sent to PHP code
+
+This parameter can be replaced with a php variable like $book_id.
+
+(You can use $GET_ to use these parameters like variables in your php code, for example: $book_id = $_GET['book']
+ This would return a value of 1 since ?book = 1 in the URL)
+
+
+Another link example using a php variable as a parameter: <a href='search/searchresults.php?author_id=$author_id'>
+
+This would open a link to the search function, search results page, preforming a search by author for whatever author_id is.

@@ -121,11 +121,11 @@
         
       <h2> 
         by <?php //Look at this later, remember to update the db
-            $result = pg_query($con, " SELECT author_id FROM book_author WHERE book_id = $book_id"); //Author query, clicking on author name returns search function link
+            $result = pg_query($con, " SELECT author_id FROM book_author WHERE book_id = $book_id"); //Author_id query, clicking on author name returns search function link
             $row = pg_fetch_assoc($result);
-            $author_id ="$row[author_id]";
+            $author_id ="$row[author_id]";  //Uses query to create author_id variable
 
-            $result2 = pg_query($con, " ((SELECT author_name FROM author WHERE author_id = (SELECT author_id FROM book_author WHERE book_id = $book_id LIMIT 1)) ORDER BY author_id ASC);");
+            $result2 = pg_query($con, " ((SELECT author_name FROM author WHERE author_id = (SELECT author_id FROM book_author WHERE book_id = $book_id LIMIT 1)) ORDER BY author_id ASC);"); //Author name query
             $row = pg_fetch_assoc($result2);
             
             echo "<a href='search/searchresults.php?author_id=$author_id'>$row[author_name]</a>"; //Prints the author name as a clickable link to the search feature, using the author_id as a parameter
