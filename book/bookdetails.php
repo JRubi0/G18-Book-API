@@ -67,7 +67,7 @@
   JOIN - joins two or more tables
   IN specifies multiple arguments for query 
   ORDER BY ASC/DESC orders values by either ascending or descending order
---------------------------------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------
 
   Here's a sample of how to get your php webpage to display a query in text (remove the . infront of ?php):
   
