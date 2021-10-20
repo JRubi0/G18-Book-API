@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>Header Text goes here</title>
-    <link rel = "stylesheet" type = "text/css" href = "./stylecopy.css">
+    <link rel = "stylesheet" type = "text/css" href = "../css/globalFormat.css">
     <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
     <script src="../scripts/jquery.js"></script>  <!--Includes JQuery-->
 </head>
@@ -20,10 +20,10 @@
             <nav>
                 <ul>
                     <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
-                    <li><a href="#">Search</a></li>
+                    <li><a href="search/searchresults.php">Search</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Checkout</a></li>
+                    <li><a href="cart/shoppingcart.php">Checkout</a></li>
                 </ul>
             </nav>
         </div>     
