@@ -67,7 +67,7 @@
   JOIN - joins two or more tables
   IN specifies multiple arguments for query 
   ORDER BY ASC/DESC orders values by either ascending or descending order
---------------------------------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------
 
   Here's a sample of how to get your php webpage to display a query in text (remove the . infront of ?php):
   
@@ -104,7 +104,7 @@
           <?php
             $result = pg_query($con, " SELECT title FROM book WHERE book_id = $book_id"); //Title query
             $row = pg_fetch_assoc($result); //Fetches the result as a raw array
-            echo "$row[title]"; //Displays the result as a string for ptinting onto the webpage
+            echo "$row[title]"; //Displays the result as a string for printing onto the webpage
           ?>
           </span>
           <div class="subtitle">     </div>
