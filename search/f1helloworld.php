@@ -70,6 +70,11 @@
             else{
 
             }
+            if ($row = null)
+            {
+              echo   " ";
+            }
+
             while ($row = pg_fetch_assoc($result) ){
                 echo   "<tr>
                             <td>".$row['book_id']."</td>
