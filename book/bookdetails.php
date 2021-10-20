@@ -104,7 +104,7 @@
           <?php
             $result = pg_query($con, " SELECT title FROM book WHERE book_id = $book_id"); //Title query
             $row = pg_fetch_assoc($result); //Fetches the result as a raw array
-            echo "$row[title]"; //Displays the result as a string for ptinting onto the webpage
+            echo "$row[title]"; //Displays the result as a string for printing onto the webpage
           ?>
           </span>
           <div class="subtitle">     </div>
