@@ -1,20 +1,35 @@
+<?php
+  include 'scripts/db.php' //Database connect script (put this at the top of your page)
+?>
+
+
 <!DOCTYPE HTML>
-
 <html>
-
-  <header id="pageHeader" class="pageHeader"> 
-    <img src="Icon.png" class=".icon" align=center> </img>    
-    <h1 class=".title" align=center>  Hello world! </h1>    
-  </header>  
+<head>
+    <title>G18 Homepage</title>
+    <link rel = "stylesheet" type = "text/css" href = "/css/globalFormat.css">
+    <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+    <script src="../scripts/jquery.js"></script>  <!--Includes JQuery-->
+</head>
 
 <body>
+    <header> 
+        <div class = "container">
+            <img src = "./assets/logo.png" alt = "logo" class = "logo"> <!--FIX ME-->
+            <nav>
+                <ul>
+                    <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="cart/shoppingcart.php">Checkout</a></li>
+                </ul>
+            </nav>
+        </div>     
+    </header>
+    <div>
 
-  <form action="search(searchbox)">
-    <label for="searchBox"> Search: </label>
-    <input type="text" id="criteria" name="searchBox"><br><br>
-    <input type="submit" value="Search">
-  </form>
-
-</body>
+    </div>
+<!--End of page hotbar-->
 
 </html>
