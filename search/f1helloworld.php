@@ -55,8 +55,21 @@
                         <th>Author</th>
                         <th>Rating</th>
                     </tr>";
-            $argc = $_GET['ORDER_BY'];
-            $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id LIMIT 1 ORDER BY $argc"); 
+            if (isset($_GET['ORDER_BY'])){ 
+                $argc = $_GET['ORDER_BY'];
+                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id ORDER BY $argc"); 
+            }
+            else if (isset($_GET['WHERE_Author'])){
+                $argc = $_GET['WHERE_Author'];
+                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND author_name LIKE '%$argc%'"); 
+            }
+            else if (isset($_GET['WHERE_Title'])){
+                $argc = $_GET['WHERE_Title'];
+                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND title LIKE '%$argc%'"); 
+            }
+            else{
+
+            }
             while ($row = pg_fetch_assoc($result) ){
                 echo   "<tr>
                             <td>".$row['book_id']."</td>
