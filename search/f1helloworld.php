@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>G18 Homepage</title>
+        <title>Search</title>
         <link rel = "stylesheet" type = "text/css" href = 'Format.css'>
         <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
         <script src="../scripts/jquery.js"></script>  <!--Includes JQuery-->
@@ -56,7 +56,7 @@
                         <th>Rating</th>
                     </tr>";
             $argc = $_GET['ORDER_BY'];
-            $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id ORDER BY $argc"); 
+            $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id LIMIT 1 ORDER BY $argc"); 
             while ($row = pg_fetch_assoc($result) ){
                 echo   "<tr>
                             <td>".$row['book_id']."</td>
