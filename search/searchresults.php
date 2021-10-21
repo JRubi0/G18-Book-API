@@ -18,7 +18,7 @@
                 <img src = '../assets/logo.png' alt = "logo" class = "logo"> <!--FIX ME-->
                 <nav>
                     <ul>
-                        <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
+                        <li><a href="search/searchresults.php?ORDER_BY=Title">Home</a></li> <!--replace # with other pages-->
                         <li><a href="#">Search</a></li>
                         <li><a href="#">Wishlist</a></li>
                         <li><a href="#">Profile</a></li>
@@ -32,17 +32,17 @@
         <div class = "ShoppingCartContainer">
             <div class = "CartHeader">
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=author_name">Order by Author</a>
+                    <a href="searchresults.php?ORDER_BY=author_name">Order by Author</a>
                 </p>
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=Title">Order by Title</a>
+                    <a href="searchresults.php?ORDER_BY=Title">Order by Title</a>
                 </p>
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=rating">Order by Rating</a>
+                    <a href="searchresults.php?ORDER_BY=rating">Order by Rating</a>
                 </p>
                 <input type="text" placeholder="What are you looking for?" id="criteria" name="criteria" value="criteria">
-                <a href="f1helloworld.php?WHERE_Author=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Author</a>  
-                <a href="f1helloworld.php?WHERE_Title=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Titles</a>  
+                <a href="searchresults.php?WHERE_Author=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Author</a>  
+                <a href="searchresults.php?WHERE_Title=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Titles</a>  
             </div>   
             <?php
             echo "<html>
@@ -74,7 +74,7 @@
             while ($row = pg_fetch_assoc($result) ){
                 echo   "<tr>
                             <td>".$row['book_id']."</td>
-                            <td>".$row['title']."</td>
+                            <td><a href='./book/bookdetails.php?book=$row[book_id]'>".$row['title']."</a></td>
                             <td>".$row['genre']."</td>
                             <td>".$row['author_name']."</td>
                         </tr>";

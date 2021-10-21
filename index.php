@@ -19,7 +19,7 @@
             <nav>
                 <ul>
                     <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
-                    <li><a href="search/searchresults.php">Search</a></li>
+                    <li><a href="search/searchresults.php?ORDER_BY=Title">Search</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="cart/shoppingcart.php">Checkout</a></li>
@@ -35,7 +35,7 @@
 <body>
 <div class = "ShoppingCartContainer">
         <div class = "CartHeader">
-            <p><a href="search/f1helloworld.php?ORDER_BY=Title">Feature 1 - Sort</a></p>
+            <p><a href="search/searchresults.php?ORDER_BY=Title">Feature 1 - Sort</a></p>
             <p><a href="feat2-profilemanage\f2helloworld.html">Feature 2 - Profile Management</a></p>
             <p><a href="/cart/shoppingcart.php">Feature 3 - Shopping Cart</a></p>
             <p><a href="/book/bookdetails.php?book=1">Feature 4 - Details</a></p>

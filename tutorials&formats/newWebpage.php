@@ -20,7 +20,7 @@
             <nav>
                 <ul>
                     <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
-                    <li><a href="search/searchresults.php">Search</a></li>
+                    <li><a href="search/searchresults.php?ORDER_BY=Title">Search</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="cart/shoppingcart.php">Checkout</a></li>
