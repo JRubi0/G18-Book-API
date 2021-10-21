@@ -43,7 +43,7 @@
                 <p>
                     <a href="searchresults.php?ORDER_BY=price">Order by Price</a>
                 </p>
-                <input type="text" placeholder="What are you looking for?" id="criteria" name="criteria" value="criteria" onclick="value=''">
+                <input type="text" placeholder="What are you looking for?" id="criteria" name="criteria" onclick="value=''">
                 <a href="searchresults.php?WHERE_Author=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Author</a>  
                 <a href="searchresults.php?WHERE_Title=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Titles</a>  
             </div>   
