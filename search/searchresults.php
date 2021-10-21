@@ -32,16 +32,16 @@
         <div class = "ShoppingCartContainer">
             <div class = "CartHeader">
                 <p>
-                    <a href="searchresults.php?ORDER_BY=author_name">Order by Author</a>
+                    <a href="searchresults.php?ORDER_BY=author_name">Sort by Author</a>
                 </p>
                 <p>
-                    <a href="searchresults.php?ORDER_BY=Title">Order by Title</a>
+                    <a href="searchresults.php?ORDER_BY=Title">Sort by Title</a>
                 </p>
                 <p>
-                    <a href="searchresults.php?ORDER_BY=rating&ORDER_TYPE=DESC">Order by Rating</a>
+                    <a href="searchresults.php?ORDER_BY=rating&ORDER_TYPE=DESC">Sort by Rating</a>
                 </p>
                 <p>
-                    <a href="searchresults.php?ORDER_BY=price">Order by Price</a>
+                    <a href="searchresults.php?ORDER_BY=price">Sort by Price</a>
                 </p>
                 <input type="text" placeholder="What are you looking for?" id="criteria" name="criteria" onclick="value=''">
                 <a href="searchresults.php?WHERE_Author=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Author</a>  
