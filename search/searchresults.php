@@ -18,11 +18,11 @@
                 <img src = '../assets/logo.png' alt = "logo" class = "logo"> <!--FIX ME-->
                 <nav>
                     <ul>
-                        <li><a href="search/searchresults.php?ORDER_BY=Title">Home</a></li> <!--replace # with other pages-->
+                        <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
                         <li><a href="#">Search</a></li>
-                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="search/searchresults.php?ORDER_BY=Title">Wishlist</a></li>
                         <li><a href="#">Profile</a></li>
-                        <li><a href="cart/shoppingcart.php">Checkout</a></li>
+                        <li><a href="../cart/shoppingcart.php">Checkout</a></li>
                     </ul>
                 </nav>
             </div>     
@@ -74,7 +74,7 @@
             while ($row = pg_fetch_assoc($result) ){
                 echo   "<tr>
                             <td>".$row['book_id']."</td>
-                            <td><a href='./book/bookdetails.php?book=$row[book_id]'>".$row['title']."</a></td>
+                            <td><a href='../book/bookdetails.php?book=$row[book_id]'>".$row['title']."</a></td>
                             <td>".$row['genre']."</td>
                             <td>".$row['author_name']."</td>
                         </tr>";
