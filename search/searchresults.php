@@ -38,14 +38,14 @@
                     <a href="searchresults.php?ORDER_BY=Title">Order by Title</a>
                 </p>
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=rating&ORDER_TYPE=DESC">Order by Rating</a>
+                    <a href="searchresults.php?ORDER_BY=rating&ORDER_TYPE=DESC">Order by Rating</a>
                 </p>
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=price">Order by Price</a>
+                    <a href="searchresults.php?ORDER_BY=price">Order by Price</a>
                 </p>
                 <input type="text" placeholder="What are you looking for?" id="criteria" name="criteria" value="criteria" onclick="value=''">
-                <a href="f1helloworld.php?WHERE_Author=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Author</a>  
-                <a href="f1helloworld.php?WHERE_Title=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Titles</a>  
+                <a href="searchresults.php?WHERE_Author=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Author</a>  
+                <a href="searchresults.php?WHERE_Title=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Titles</a>  
             </div>   
             <?php
             echo "<html>
