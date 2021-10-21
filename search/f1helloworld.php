@@ -38,9 +38,12 @@
                     <a href="f1helloworld.php?ORDER_BY=Title">Order by Title</a>
                 </p>
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=rating">Order by Rating</a>
+                    <a href="f1helloworld.php?ORDER_BY=rating&ORDER_TYPE=DESC">Order by Rating</a>
                 </p>
-                <input type="text" placeholder="What are you looking for?" id="criteria" name="criteria" value="criteria">
+                <p>
+                    <a href="f1helloworld.php?ORDER_BY=price">Order by Price</a>
+                </p>
+                <input type="text" placeholder="What are you looking for?" id="criteria" name="criteria" value="criteria" onclick="value=''">
                 <a href="f1helloworld.php?WHERE_Author=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Author</a>  
                 <a href="f1helloworld.php?WHERE_Title=" onclick="window.location=this.href+document.getElementById('criteria').value;return false;">Search Titles</a>  
             </div>   
@@ -54,18 +57,33 @@
                         <th>Genre</th>
                         <th>Author</th>
                         <th>Rating</th>
+                        <th>Price</th>
                     </tr>";
             if (isset($_GET['ORDER_BY'])){ 
                 $argc = $_GET['ORDER_BY'];
-                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id ORDER BY $argc"); 
+                $argv = "ASC";
+                if (isset($_GET['ORDER_TYPE'])){
+                    $argv = $_GET['ORDER_TYPE'];
+                }
+                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name, price, ROUND(AVG(star_rating), 1) AS rating 
+                                            FROM book, author, book_author, reviews 
+                                            WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND reviews.book_id = book.book_id
+                                            GROUP BY book.book_id, author_name
+                                            ORDER BY $argc $argv LIMIT 45" ); 
             }
             else if (isset($_GET['WHERE_Author'])){
                 $argc = $_GET['WHERE_Author'];
-                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND author_name LIKE '%$argc%'"); 
+                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name, price, ROUND(AVG(star_rating), 1) AS rating
+                                            FROM book, author, book_author, reviews 
+                                            WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND reviews.book_id = book.book_id AND LOWER(author_name) LIKE LOWER('%$argc%')
+                                            GROUP BY book.book_id, author_name"); 
             }
             else if (isset($_GET['WHERE_Title'])){
                 $argc = $_GET['WHERE_Title'];
-                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name FROM book, author, book_author WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND title LIKE '%$argc%'"); 
+                $result = pg_query($con, " SELECT book.book_id, title, genre, author_name, price, ROUND(AVG(star_rating), 1) AS rating
+                                            FROM book, author, book_author, reviews 
+                                            WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND reviews.book_id = book.book_id AND LOWER(title) LIKE LOWER('%$argc%')
+                                            GROUP BY book.book_id, author_name"); 
             }
             else{
 
@@ -76,6 +94,8 @@
                             <td>".$row['title']."</td>
                             <td>".$row['genre']."</td>
                             <td>".$row['author_name']."</td>
+                            <td>".$row['rating']."</td>
+                            <td>".$row['price']."</td>
                         </tr>";
                 }
                 echo  "</table></body></htmml>";
