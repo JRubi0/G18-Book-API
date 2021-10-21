@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>G18 Homepage</title>
+        <title>Search</title>
         <link rel = "stylesheet" type = "text/css" href = 'Format.css'>
         <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
         <script src="../scripts/jquery.js"></script>  <!--Includes JQuery-->
@@ -20,9 +20,9 @@
                     <ul>
                         <li><a href="../index.php">Home</a></li> <!--replace # with other pages-->
                         <li><a href="#">Search</a></li>
-                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="search/searchresults.php?ORDER_BY=Title">Wishlist</a></li>
                         <li><a href="#">Profile</a></li>
-                        <li><a href="cart/shoppingcart.php">Checkout</a></li>
+                        <li><a href="../cart/shoppingcart.php">Checkout</a></li>
                     </ul>
                 </nav>
             </div>     
@@ -32,10 +32,10 @@
         <div class = "ShoppingCartContainer">
             <div class = "CartHeader">
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=author_name">Order by Author</a>
+                    <a href="searchresults.php?ORDER_BY=author_name">Order by Author</a>
                 </p>
                 <p>
-                    <a href="f1helloworld.php?ORDER_BY=Title">Order by Title</a>
+                    <a href="searchresults.php?ORDER_BY=Title">Order by Title</a>
                 </p>
                 <p>
                     <a href="f1helloworld.php?ORDER_BY=rating&ORDER_TYPE=DESC">Order by Rating</a>
@@ -88,10 +88,11 @@
             else{
 
             }
+            
             while ($row = pg_fetch_assoc($result) ){
                 echo   "<tr>
                             <td>".$row['book_id']."</td>
-                            <td>".$row['title']."</td>
+                            <td><a href='../book/bookdetails.php?book=$row[book_id]'>".$row['title']."</a></td>
                             <td>".$row['genre']."</td>
                             <td>".$row['author_name']."</td>
                             <td>".$row['rating']."</td>
