@@ -88,7 +88,7 @@ nav a:hover::before {
 /*body*/
 .ShoppingCartContainer{
     width: 75%;
-    height: 300%;
+    height: auto;
 	padding-top: 5px;
     opacity: 95%;
     margin: auto;
@@ -126,7 +126,7 @@ nav a:hover::before {
 .Cart-Items{
 	margin: auto;
 	width: 90%;
-	height: 30%;
+	height: auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
