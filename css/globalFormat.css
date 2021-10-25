@@ -26,6 +26,46 @@ header {
   background: #ffffff;
 }
 
+.accordion {
+	background-color: #eee;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+}
+  
+.active, .accordion:hover {
+	background-color: #ccc;
+}
+  
+.ui-accordion-content p{
+	font-size: .9em;
+	margin: .5em;
+}
+  .ui-accordion-content a{
+	font-size: .75em;
+	padding: 1em;
+	margin: 1em .5em;
+	display: inline-block;
+	background: #154f83;
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	border-radius: 3px;
+	transition: all .3s ease; 
+}
+  .ui-accordion-content a:hover{
+	background: #910101;
+}
+  .ui-accordion-content span{
+	font-weight: bold;
+}
+
 header::after {
   content: '';
   display: table;

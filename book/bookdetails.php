@@ -89,8 +89,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./css/style.css"> <!--Replace this with your own CSS file-->
   <script src="../scripts/jquery.js"></script>  <!--Includes JQuery-->
-  <link rel="stylesheet" type="text/css" href="css/style.css"> <!--Replace this with your own CSS file-->
 </head>
 <!--End CopyPaste-->
 
