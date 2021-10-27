@@ -18,12 +18,12 @@ const getBooks = (request, response) => {
   })
 } 
 
-const getBookById = (request, response) => {
-  const id = parseInt(request.params.id)
+const getBookById = (req, res) => {
+  const id = parseInt(req.params.id)
 
-  pool.query('SELECT * FROM book WHERE book_id = $1', [id], (error, results) => {
-    if (error) {
-      throw error
+  pool.query(`SELECT * from book where book_id=${req.params.book_id}`, (err, res) => {
+    if (err) {
+      throw err
     }
     response.status(200).json(results.rows)
   })
