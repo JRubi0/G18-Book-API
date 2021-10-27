@@ -1,12 +1,12 @@
-
-
 const express = require('express');       // pulling in express installed in .json
 const bodyParser = require('body-parser') // pulling in body-parser from json
 const app = express();                    // initialize app
 //const dotenv = require('dotenv');
 require('dotenv').config();
 const port = 3000
-const db = require('./queries')
+
+const book = require("./books/books.js")
+
 
 //dotenv.config({ path: './.env' });// Set path to .env file
 
@@ -30,14 +30,16 @@ app.get('/', (request, response) => {
      *   DELETE     |  "Delete"  |  DELETE
      */
 
-// books retrieval routes that uses the db object for handling queries
-app.get('/books', db.getBooks) // gets all books
-app.get('/books/:id', db.getBookById) // gets book by ID number
-//app.post('/books', db.createBook)
-//app.put('/books/:id', db.updateBook)
-//app.delete('/books/:id', db.deleteBook)
+// books retrieval routes that uses the book object for handling queries
 
-// cart routes that uses the db object for handling queries
+app.get('/books', book.getBooks) // gets all books
+app.get('/books/:id', book.getBookById) // gets book by ID number
+//app.post('/books', book.createBook)
+//app.put('/books/:id', book.updateBook)
+//app.delete('/books/:id', book.deleteBook)
+
+// cart routes that uses the book object for handling queries
+
 //app.post('/cart', db.createNew) // call to create new cart CREATE_NEW
 //app.put('/cart/items/add', db.updateTo)       // call to update book(s) in cart UPDATE_TO
 //app.get('/cart/items', db.getData)     // call to list all book(s) in cart GET_DATA
