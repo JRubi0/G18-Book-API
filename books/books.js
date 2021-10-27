@@ -20,7 +20,7 @@ const getBooks = (req, res) => {
   });
 } 
 
-/*const getBookById = (req, res) => 
+const getBookById = (req, res) => 
 {
   const book_id = parseInt(req.params.book_id)
 
@@ -64,12 +64,12 @@ const createBook = (request, response) => {
   })
 }
 
-*/
+
 
 module.exports = {
   getBooks,
-  //getBookById,
-  //getBookByISBN,
+  getBookById,
+  getBookByISBN,
   //createBook,
   //updateBook,
   //deleteBook,

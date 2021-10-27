@@ -9,7 +9,7 @@ dotenv.config({ path: './.env' });// Set path to .env file
 const port = 3000
 
 const book = require("./books/books.js")
-const book = require("./features/search.js")
+const search = require("./features/search.js")
 
 app.use(bodyParser.json());
 app.use(
@@ -34,8 +34,8 @@ app.get('/', (request, response) => {
 //-------------------BOOK ROUTES----------------------
 
 app.get('/book', book.getBooks) // gets all books
-/* app.get('/book/:book_id', book.getBookById) // gets book by ID number
-app.get('/book/isbn/:isbn', book.getBookByISBN) */// gets book by ISBN
+app.get('/book/:book_id', book.getBookById) // gets book by ID number
+app.get('/book/isbn/:isbn', book.getBookByISBN) // gets book by ISBN
 //app.post('/books', book.createBook)
 //app.put('/books/:id', book.updateBook)
 //app.delete('/books/:id', book.deleteBook)
