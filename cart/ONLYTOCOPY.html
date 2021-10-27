@@ -1,12 +1,30 @@
 <!DOCTYPE html>
+<!--This code is just the layout of the page: navagation menu and 
+    as well as shopping cart container with labels. Nothing is
+    linked to the database. -->
 <head>
     <title> Geek Text My Cart</title>
-    <link rel = "stylesheet" type = "text/css" href = "./style.css">
+    <link rel = "stylesheet" type = "text/css" href = "./style copy.css">
     <link href = "https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet" >
 </head>
+
 <body>
+    <header> 
+        <div class = "container">
+            <img src = "assets/logo.png" alt = "logo" class = "logo"> <!--FIX ME-->
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li> <!--replace # with other pages-->
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Checkout</a></li>
+                </ul>
+            </nav>
+        </div>     
+    </header>
     <div class = "ShoppingCartContainer">
-        <div class = "Header">
+        <div class = "CartHeader">
             <h3 class = "Heading" > Shopping Cart </h3>
             <h5 class = "Action" > Remove all </h5>
         </div>
@@ -26,5 +44,7 @@
             </div>
             <button class="button">Checkout</button></div>
     </div>
+
+    
 </body>
 </html>
