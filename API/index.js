@@ -31,13 +31,19 @@ app.get('/', (request, response) => {
      */
 
 // books retrieval routes that uses the db object for handling queries
-app.get('/books', db.getBooks)
-app.get('/books/:id', db.getBookById)
-//app.get('/customer', db2.getC)
-//app.get('/customer/:id', db2.getCById)
+app.get('/books', db.getBooks) // gets all books
+app.get('/books/:id', db.getBookById) // gets book by ID number
 //app.post('/books', db.createBook)
 //app.put('/books/:id', db.updateBook)
 //app.delete('/books/:id', db.deleteBook)
+
+// cart routes that uses the db object for handling queries
+//app.post('/cart', db.createNew) // call to create new cart CREATE_NEW
+//app.put('/cart/items/add', db.updateTo)       // call to update book(s) in cart UPDATE_TO
+//app.get('/cart/items', db.getData)     // call to list all book(s) in cart GET_DATA
+//app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart DELETE_THIS
+
+
 
 // Start server
 app.listen(port, () => {
