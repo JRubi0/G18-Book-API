@@ -1,6 +1,7 @@
 
 const dotenv = require('dotenv'); 
 dotenv.config({ path: './.env' });// Set path to .env file
+// FIX ME need to create path to all files in features that contain query data
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -13,9 +14,12 @@ const pool = new Pool({
 // Access the environment variable using method process.env.VARIABLE_NAME
 // located in node_modules. Installed when package.json was created.
 
-// creating a generic query to use with all features
-const getItem = (request, response) => {
-  pool.query('SELECT * FROM book ORDER BY book_id ASC', (error, results) => {
+// pulling in cart data
+const CREATE_NEW = require('./features/cart')
+
+// creating a generic query to use with all features this one is for creating
+const createNew = (request, response) => {
+  pool.query(this.CREATE_NEW, (error, results) => {
     if (error) {
       throw error
     }
