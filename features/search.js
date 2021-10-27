@@ -73,28 +73,9 @@ const getBooksAboveRating = (req, res) => {
     pool.end;
 } 
 
-const getBookSubset = (req, res) => {
-    pool.query(`SELECT DISTINCT book.book_id, title, genre, author_name, price, ROUND(AVG(star_rating), 1) as rating
-                FROM book, author, book_author, reviews                                            
-                WHERE book.book_id = book_author.book_id AND author.author_id = book_author.author_id AND reviews.book_id = book.book_id
-                GROUP BY book.book_id, author_name, star_rating, review_id
-                HAVING AVG(star_rating) > ${req.params.rating}`, (err, result) => 
-    {
-      if(!err)
-      {
-        res.status(200).json(result.rows[0]);
-  
-        res.end;
-      }
-    });
-    pool.end;
-} 
-
 module.exports = {
     getBooks,
-    getBookById,
-    getBookByISBN,
-    //createBook,
-    //updateBook,
-    //deleteBook,
+    getBooksByGenre,
+    getBooksTopSellers,
+    getBooksAboveRating,
   } 
