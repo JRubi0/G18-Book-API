@@ -40,6 +40,11 @@ app.get('/book/isbn/:isbn13', book.getBookByISBN) // gets book by ISBN
 //app.put('/books/:id', book.updateBook)
 //app.delete('/books/:id', book.deleteBook)
 
+
+//-------------------SEARCH ROUTES----------------------
+app.get('/search/:page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
+
+
 // cart routes that uses the book object for handling queries
 
 //app.post('/cart', db.createNew) // call to create new cart CREATE_NEW
