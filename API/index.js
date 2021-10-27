@@ -4,9 +4,9 @@ const app = express();                    // initialize app\
 
 const dotenv = require('dotenv');
 require('dotenv').config();
-const port = 3000
-
 dotenv.config({ path: './.env' });// Set path to .env file
+
+const port = 3000
 
 const book = require("./books/books.js")
 
