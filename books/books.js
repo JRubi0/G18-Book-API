@@ -10,7 +10,7 @@ const pool = new Pool({
 //-------------------BOOK QUERIES----------------------
 const getBooks = (req, res) => 
 {
-  pool.query(`SELECT * FROM book`, (err, result) => 
+  pool.query(`SELECT * FROM book ORDER BY book_id ASC`, (err, result) => 
   {
     if(!err)
     {
@@ -22,8 +22,10 @@ const getBooks = (req, res) =>
 
 const getBookById = (req, res) => 
 {
-
-  pool.query(`SELECT( * FROM book WHERE book_id=${req.params.book_id}) UNION ALL SELECT author_name FROM author WHERE author_id = (SELECT author_id FROM book_author WHERE book_id = $book_id LIMIT 1) ORDER BY author_id ASC`, (err, result) => 
+  pool.query(`SELECT book.*, author.author_name
+              FROM book, author
+              WHERE book_id= ${req.params.book_id} AND author_id = (SELECT author_id FROM book_author WHERE book_id = ${req.params.book_id} LIMIT 1) 
+              ORDER BY author_id ASC`, (err, result) => 
   {
     if(!err)
     {
@@ -46,8 +48,11 @@ const getBookByISBN = (req, res) =>
 }
 
 const getAuthorsBooks = (req, res) => 
-{
-  pool.query(`SELECT * FROM book WHERE isbn13='${req.params.isbn13}'`, (err, result) => 
+{ 
+  
+  pool.query(`SELECT book_id, title, isbn13, author_name 
+              FROM author, book
+              WHERE book_id = SELECT book_id FROM book_author WHERE author_id='${req.params.author_id}'`, (err, result) => 
   {
     if(!err)
     {
@@ -76,6 +81,7 @@ module.exports = {
   getBooks,
   getBookById,
   getBookByISBN,
+  getAuthorsBooks,
   //createBook,
   //updateBook,
   //deleteBook,
