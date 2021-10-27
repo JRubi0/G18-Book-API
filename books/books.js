@@ -1,7 +1,3 @@
-const express = require('express');       // pulling in express installed in .json
-const bodyParser = require('body-parser') // pulling in body-parser from json
-const app = express();                    // initialize app\
-
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -22,10 +18,9 @@ const getBooks = (req, res) => {
       res.end;
     }
   });
-  pool.end;
 } 
 
-const getBookById = (req, res) => 
+/*const getBookById = (req, res) => 
 {
   const book_id = parseInt(req.params.book_id)
 
@@ -69,13 +64,13 @@ const createBook = (request, response) => {
   })
 }
 
-
+*/
 
 module.exports = {
   getBooks,
-  getBookById,
-  getBookByISBN,
+  //getBookById,
+  //getBookByISBN,
   //createBook,
   //updateBook,
   //deleteBook,
-}
+} 
