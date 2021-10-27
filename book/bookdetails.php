@@ -1,30 +1,5 @@
-<!--This file creates the book details page and queries the PostgreSQL database for book info. 
-
-Since it turns out that .js doesn't really work for querying and sending data between a server and a website, 
-we will be having to use .php for our project going forward. 
-
-Use .php pages instead of .html pages since this lets you communicate with the server.
-    .js files are used for running external scripts inside your .php page. 
-      You can include them in your file by putting <script src="../scripts/(scriptpathgoeshere)"></script> under your <html></html> tags.
-
-
-The index.php file works as a homepage. Click Feature 4 - Details to test my feature.
-
-
-The f4scripts folder just has some scripts for the minimized window content and the accordion drop down for the reviews.
-
-The depreciated-stuff folder has old files from when I tried running the server on .js backend. Don't use these, they'll be deleted soon!
-
-
-
-Feel free to copy code for your own features! -->
-
 <?php
-<<<<<<< HEAD
-  include '../scripts/db.php' //
-=======
   include '../scripts/db.php' //Database connect script (put this at the top of your page)
->>>>>>> e3573867452320d829504dca39159a2cc1dbe184
 ?>
 
 <!DOCTYPE HTML>
