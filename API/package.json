@@ -11,5 +11,11 @@
     "url": "(https://github.com/JRubi0/G18-Book-API/tree/REST-API/API)"
   },
   "author": "Group 18: Juan Rubio, Starla Schwartz, Bryan Simmons, Eduardo Socha Cortes, Freddy Somarriba Martinez, and Emily Tang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
+  }
 }
