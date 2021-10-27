@@ -31,8 +31,13 @@ app.get('/', (request, response) => {
      *   DELETE     |  "Delete"  |  DELETE
      */
 
-// books retrieval routes that uses the book object for handling queries
-//MOVED to books.js
+//-------------------BOOK ROUTES----------------------
+
+app.get('/books', book.getBooks) // gets all books
+app.get('/books/:book_id', book.getBookById) // gets book by ID number
+//app.post('/books', book.createBook)
+//app.put('/books/:id', book.updateBook)
+//app.delete('/books/:id', book.deleteBook)
 
 // cart routes that uses the book object for handling queries
 
