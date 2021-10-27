@@ -22,6 +22,14 @@ app.get('/', (request, response) => {
     response.json({ info: 'You need to specify a path for a valid query!' })
   })
 
+/* Public functions when to use
+     * HTTP METHOD  |  REST API  |  SQL / POSTGRES
+     *   GET        |   "Read"   |  SELECT
+     *   POST       |  "Create"  |  INSERT
+     *   PUT        |  "Update"  |  UPDATE
+     *   DELETE     |  "Delete"  |  DELETE
+     */
+
 // books retrieval routes that uses the db object for handling queries
 app.get('/books', db.getBooks)
 app.get('/books/:id', db.getBookById)
