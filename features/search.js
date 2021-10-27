@@ -9,15 +9,9 @@ const pool = new Pool({
 
 //-------------------BOOK QUERIES----------------------
 const getBooks = (req, res) => {
-    const pageNum = parseInt(req.params.page);
-    if (pageNum > 1)
-    {
-        const offsetVar = (pageNum - 1) * 20;
-    }
-    else
-    {
-        const offsetVar = 0;
-    }
+    $pageNum = parseInt(req.params.page);
+    $offsetVar = ($pageNum - 1) * 20;
+
     pool.query(`SELECT * FROM book ORDER BY book_id LIMIT 20 OFFSET $offsetVar`, (err, result) => 
     {
       if(!err)
@@ -27,7 +21,6 @@ const getBooks = (req, res) => {
         res.end;
       }
     });
-    pool.end;
   } 
 
 const getBooksByGenre = (req, res) => {
