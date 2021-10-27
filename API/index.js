@@ -1,14 +1,14 @@
 const express = require('express');       // pulling in express installed in .json
 const bodyParser = require('body-parser') // pulling in body-parser from json
 const app = express();                    // initialize app
-//const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 require('dotenv').config();
 const port = 3000
 
-const book = require("./books/books.js")
+dotenv.config({ path: './.env' });// Set path to .env file
 
+const book = require("./queries/books.js")
 
-//dotenv.config({ path: './.env' });// Set path to .env file
 
 app.use(bodyParser.json());
 app.use(
