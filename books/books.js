@@ -1,7 +1,3 @@
-const express = require('express');       // pulling in express installed in .json
-const bodyParser = require('body-parser') // pulling in body-parser from json
-const app = express();                    // initialize app\
-
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -12,31 +8,51 @@ const pool = new Pool({
 })
 
 //-------------------BOOK QUERIES----------------------
-const getBooks = (request, response) => {
-  pool.query('SELECT * FROM book ORDER BY book_id ASC', (error, results) => {
-    if (error) {
-      throw error
+const getBooks = (req, res) => {
+  pool.query(`SELECT * FROM book ORDER BY ASC`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(200).json(result.rows[0]);
+
+      res.end;
     }
-    response.status(200).json(results.rows)
-  })
+  });
 } 
 
 const getBookById = (req, res) => 
 {
-  const book_id = parseInt(req.params.id)
+  const book_id = parseInt(req.params.book_id)
 
-  pool.query(`SELECT * from book where book_id=${req.params.book_id}`, (err, result) => 
+  pool.query(`SELECT * FROM book WHERE book_id=${req.params.book_id}`, (err, result) => 
   {
     if(!err)
     {
-      res.json(result.rows[0]);
-      res.status(200).json(result.rows)
+      res.status(200).json(result.rows[0]);
+
+      res.end;
     }
   });
-  client.end;
+  pool.end;
 }
 
-/*
+const getBookByISBN = (req, res) => 
+{
+  const ISBN = parseInt(req.params.isbn)
+
+  pool.query(`SELECT * FROM book WHERE isbn13=${req.params.isbn}`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(200).json(result.rows[0]);
+
+      res.end;
+    }
+  });
+  pool.end;
+}
+
+
 const createBook = (request, response) => {
   const { name, email } = request.body
 
@@ -46,14 +62,15 @@ const createBook = (request, response) => {
     }
     response.status(201).send(`Book added with ID: ${result.insertId}`)
   })
-}*/
+}
 
 
 
 module.exports = {
   getBooks,
   getBookById,
+  getBookByISBN,
   //createBook,
   //updateBook,
   //deleteBook,
-}
+} 
