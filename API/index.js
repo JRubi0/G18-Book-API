@@ -1,6 +1,7 @@
 const express = require('express');       // pulling in express installed in .json
 const bodyParser = require('body-parser') // pulling in body-parser from json
-const app = express();                    // initialize app
+const app = express();                    // initialize app\
+
 const dotenv = require('dotenv');
 require('dotenv').config();
 const port = 3000
