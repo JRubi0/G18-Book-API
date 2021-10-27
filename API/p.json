@@ -1,7 +1,7 @@
 {
-  "name": "G18 GeekText API",
+  "name": "geektext",
   "version": "1.0.0",
-  "description": "REST API",
+  "description": "rest api",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
