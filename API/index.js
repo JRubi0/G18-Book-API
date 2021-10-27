@@ -7,7 +7,7 @@ const port = 3000
 
 dotenv.config({ path: './.env' });// Set path to .env file
 
-const book = require("./queries/books.js")
+const book = require("./books/books.js")
 
 
 app.use(bodyParser.json());

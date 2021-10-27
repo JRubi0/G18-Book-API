@@ -14,7 +14,7 @@ const pool = new Pool({
 // located in node_modules. Installed when package.json was created.
 
 // pulling in cart data
-const CREATE_NEW = require('./features/cart')
+const CREATE_NEW = require('../features/cart')
 
 // creating a generic query to use with all features this one is for creating
 const createNew = (request, response) => {
