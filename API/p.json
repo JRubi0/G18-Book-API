@@ -1,7 +1,7 @@
 {
-  "name": "geektext",
+  "name": "G18 GeekText API",
   "version": "1.0.0",
-  "description": "rest api",
+  "description": "REST API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,5 +14,5 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "pg": "^8.7.1"
-  } (https://github.com/JRubi0/G18-Book-API.git)
+  } 
 }
