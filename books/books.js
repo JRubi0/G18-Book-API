@@ -1,7 +1,3 @@
-const dotenv = require('dotenv'); 
-dotenv.config({ path: './.env' });// Set path to .env file
-// FIX ME need to create path to all files in features that contain query data
-
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -12,7 +8,6 @@ const pool = new Pool({
 })
 
 //----------------------BOOK------------------------------
-console.log(process.env.DB_PASSWORD);
 
 const getBooks = (request, response) => {
   pool.query('SELECT * FROM book ORDER BY book_id ASC', (error, results) => {
