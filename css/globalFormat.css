@@ -26,6 +26,12 @@ header {
   background: #ffffff;
 }
 
+#second-half ul{
+	list-style-type: none;
+	padding-left: 20px;
+	margin: .5em 0;
+  }
+
 .accordion {
 	background-color: #eee;
 	color: #444;
@@ -37,16 +43,24 @@ header {
 	outline: none;
 	font-size: 15px;
 	transition: 0.4s;
-}
+  }
   
-.active, .accordion:hover {
+  .active, .accordion:hover {
 	background-color: #ccc;
-}
+  }
   
-.ui-accordion-content p{
+  .panel {
+	padding: 0 18px;
+	background-color: white;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+  }
+  
+  .ui-accordion-content p{
 	font-size: .9em;
 	margin: .5em;
-}
+  }
   .ui-accordion-content a{
 	font-size: .75em;
 	padding: 1em;
@@ -58,13 +72,13 @@ header {
 	text-transform: uppercase;
 	border-radius: 3px;
 	transition: all .3s ease; 
-}
+  }
   .ui-accordion-content a:hover{
 	background: #910101;
-}
+  }
   .ui-accordion-content span{
 	font-weight: bold;
-}
+  }
 
 header::after {
   content: '';
@@ -301,3 +315,47 @@ hr{
 	font-weight: 600;
 	color: #202020;
 }
+
+.half{
+	background: #f0f0f0;
+	float: left;
+	margin: 1%;
+	padding: 0 2%;
+	border-radius: 3px;
+  }
+  #first-half{
+	width: 56%;
+  }
+  #second-half{
+	border: 1px solid;
+	width: 28%;
+  }
+  #second-half span{
+	font-size: .85em;
+	margin-left: .5em;
+	color: #154f83;
+	cursor: pointer;
+  }
+
+  .book-cover{
+	text-align: left;
+  }
+
+  .ui-state-active{
+	background: #910101;
+	border-color: initial;
+  }
+  .ui-state-active:focus, .ui-state-default:focus{
+	outline: none;
+  }
+
+  @media (max-width: 768px){
+	.half {
+	  width: 100% !important;
+	  margin: 0;
+	  padding: 0;
+	}
+	#second-half{
+	  margin: 2em 0;
+	}
+  }
