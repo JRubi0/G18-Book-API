@@ -22,14 +22,14 @@ const getBookById = (req, res) =>
 {
   const book_id = parseInt(req.params.id)
 
-  pool.query(`SELECT * from book where book_id=${req.params.book_id}`, (err, res) => 
+  pool.query(`SELECT * from book where book_id=${req.params.book_id}`, (err, result) => 
   {
     if(!err)
     {
-      res.json(result.rows[0]);
+      res.json(res.rows[0]);
     }
   });
-    response.status(200).json(results.rows)
+    res.status(200).json(result.rows)
     client.end;
 }
 
