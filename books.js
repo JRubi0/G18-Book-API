@@ -8,7 +8,7 @@ const pool = new Pool({
 })
 
 //----------------------BOOK------------------------------
-console.log(process.env.DB_PASSWORD);
+
 
 const getBooks = (request, response) => {
   pool.query('SELECT * FROM book ORDER BY book_id ASC', (error, results) => {
