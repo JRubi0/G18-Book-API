@@ -1,13 +1,16 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-})
+const express = require('express');       // pulling in express installed in .json
+const bodyParser = require('body-parser') // pulling in body-parser from json
+const app = express();                    // initialize app\
+const pool = require('../pool.js');
+//-------------------BOOK QUERIES----------------------
 
-//----------------------BOOK------------------------------
+app.get('/books', getBooks) // gets all books
+app.get('/books/:book_id', getBookById) // gets book by ID number
+//app.post('/books', book.createBook)
+//app.put('/books/:id', book.updateBook)
+//app.delete('/books/:id', book.deleteBook)
+
+//--------------------------------------------------------
 
 const getBooks = (request, response) => {
   pool.query('SELECT * FROM book ORDER BY book_id ASC', (error, results) => {
@@ -26,11 +29,11 @@ const getBookById = (req, res) =>
   {
     if(!err)
     {
-      res.json(res.rows[0]);
+      res.json(result.rows[0]);
+      res.status(200).json(result.rows)
     }
   });
-    res.status(200).json(result.rows)
-    client.end;
+  client.end;
 }
 
 /*
@@ -47,10 +50,12 @@ const createBook = (request, response) => {
 
 
 
-module.exports = {
-  getBooks,
-  getBookById,
-  //createBook,
-  //updateBook,
-  //deleteBook,
-}
+//----------------------BOOK------------------------------
+
+app.get('/books', getBooks) // gets all books
+app.get('/books/:book_id', getBookById) // gets book by ID number
+//app.post('/books', book.createBook)
+//app.put('/books/:id', book.updateBook)
+//app.delete('/books/:id', book.deleteBook)
+
+//--------------------------------------------------------
