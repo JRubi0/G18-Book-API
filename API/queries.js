@@ -13,6 +13,15 @@ const pool = new Pool({
 // Access the environment variable using method process.env.VARIABLE_NAME
 // located in node_modules. Installed when package.json was created.
 
+// creating a generic query to use with all features
+const getItem = (request, response) => {
+  pool.query('SELECT * FROM book ORDER BY book_id ASC', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+} 
 
 // change book to something generic so al features can use it
 const getBooks = (request, response) => {
