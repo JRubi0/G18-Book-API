@@ -8,29 +8,26 @@ const pool = new Pool({
 })
 
 //-------------------BOOK QUERIES----------------------
-const getBooks = (req, res) => {
-  pool.query(`SELECT * FROM book ORDER BY ASC`, (err, result) => 
+const getBooks = (req, res) => 
+{
+  pool.query(`SELECT * FROM book`, (err, result) => 
   {
     if(!err)
     {
-      res.status(200).json(result.rows[0]);
-
-      res.end;
+    res.status(200).json(result.rows);
     }
   });
-} 
+  pool.end;
+}
 
 const getBookById = (req, res) => 
 {
-  const book_id = parseInt(req.params.book_id)
 
   pool.query(`SELECT * FROM book WHERE book_id=${req.params.book_id}`, (err, result) => 
   {
     if(!err)
     {
       res.status(200).json(result.rows[0]);
-
-      res.end;
     }
   });
   pool.end;
@@ -38,15 +35,23 @@ const getBookById = (req, res) =>
 
 const getBookByISBN = (req, res) => 
 {
-  const ISBN = parseInt(req.params.isbn)
-
-  pool.query(`SELECT * FROM book WHERE isbn13=${req.params.isbn}`, (err, result) => 
+  pool.query(`SELECT * FROM book WHERE isbn13='${req.params.isbn13}'`, (err, result) => 
   {
     if(!err)
     {
       res.status(200).json(result.rows[0]);
+    }
+  });
+  pool.end;
+}
 
-      res.end;
+const getAuthorsBooks = (req, res) => 
+{
+  pool.query(`SELECT * FROM book WHERE isbn13='${req.params.isbn13}'`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(200).json(result.rows[0]);
     }
   });
   pool.end;

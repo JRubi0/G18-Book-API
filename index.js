@@ -35,7 +35,7 @@ app.get('/', (request, response) => {
 
 app.get('/book', book.getBooks) // gets all books
 app.get('/book/:book_id', book.getBookById) // gets book by ID number
-app.get('/book/isbn/:isbn', book.getBookByISBN) // gets book by ISBN
+app.get('/book/isbn/:isbn13', book.getBookByISBN) // gets book by ISBN
 //app.post('/books', book.createBook)
 //app.put('/books/:id', book.updateBook)
 //app.delete('/books/:id', book.deleteBook)
@@ -46,7 +46,6 @@ app.get('/book/isbn/:isbn', book.getBookByISBN) // gets book by ISBN
 //app.put('/cart/items/add', db.updateTo)       // call to update book(s) in cart UPDATE_TO
 //app.get('/cart/items', db.getData)     // call to list all book(s) in cart GET_DATA
 //app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart DELETE_THIS
-
 
 
 // Start server
