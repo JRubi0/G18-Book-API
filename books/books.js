@@ -23,7 +23,7 @@ const getBooks = (req, res) =>
 const getBookById = (req, res) => 
 {
 
-  pool.query(`SELECT * FROM book WHERE book_id=${req.params.book_id}`, (err, result) => 
+  pool.query(`SELECT( * FROM book WHERE book_id=${req.params.book_id}) UNION ALL SELECT author_name FROM author WHERE author_id = (SELECT author_id FROM book_author WHERE book_id = $book_id LIMIT 1) ORDER BY author_id ASC`, (err, result) => 
   {
     if(!err)
     {
@@ -56,6 +56,7 @@ const getAuthorsBooks = (req, res) =>
   });
   pool.end;
 }
+
 
 
 const createBook = (request, response) => {
