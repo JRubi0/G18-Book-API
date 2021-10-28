@@ -43,10 +43,10 @@ app.get('/author/:author_id', book.getAuthorsBooks, book.getAuthorsBooks) // get
 
 
 //-------------------SEARCH ROUTES----------------------
-app.get('/search/:page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
-app.get('/search/:genre', search.getBooksByGenre) // Diplays all books of the specified genre
-app.get('/search/:number', search.getBooksTopSellers) // Diplays the top sellers. Takes in a variable for how many to display, in order by copies sold
-app.get('/search/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number 
+app.get('/search/all/:page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
+app.get('/search/genre/:genre', search.getBooksByGenre) // Diplays all books of the specified genre
+app.get('/search/top/:number', search.getBooksTopSellers) // Diplays the top sellers. Takes in a variable for how many to display, in order by copies sold
+app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number 
 
 // cart routes that uses the book object for handling queries
 
