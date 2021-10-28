@@ -11,14 +11,14 @@ const pool = new Pool({
 const getBooks = (req, res) => {
     $pageNum = parseInt(req.params.page);
     $offsetVar = ($pageNum - 1) * 20;
-
+    //console.log($offsetVar);
     pool.query(`SELECT * FROM book ORDER BY book_id LIMIT 20 OFFSET $offsetVar`, (err, result) => 
     {
       if(!err)
       {
-        res.status(200).json(result.rows[0]);
+        res.status(200).json(result.rows);
   
-        res.end;
+        //res.end;
       }
     });
     pool.end;
