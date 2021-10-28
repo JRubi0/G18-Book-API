@@ -39,11 +39,11 @@ const getBooksByGenre = (req, res) => {
 } 
 
 const getBooksTopSellers = (req, res) => {
-    pool.query(`SELECT * FROM book ORDER BY copies_sold LIMIT ${req.params.limit}`, (err, result) => 
+    pool.query(`SELECT * FROM book ORDER BY copies_sold LIMIT ${req.params.number}`, (err, result) => 
     {
       if(!err)
       {
-        res.status(200).json(result.rows[0]);
+        res.status(200).json(result.rows);
   
         res.end;
       }
@@ -61,7 +61,7 @@ const getBooksAboveRating = (req, res) => {
     {
       if(!err)
       {
-        res.status(200).json(result.rows[0]);
+        res.status(200).json(result.rows);
   
         res.end;
       }
