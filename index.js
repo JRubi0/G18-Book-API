@@ -51,6 +51,7 @@ app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all boo
 
 //-------------------USER ROUTES----------------------
 //app.post('/user/update/:field&:newValue&:username', users.Updateuser)
+app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
 
 // cart routes that uses the book object for handling queries
 

@@ -39,16 +39,25 @@ const Updateuser = (req, res) => {
   });
   pool.end;
 } 
+
+const GetCreditCards = (req, res) => {
+  pool.query(`SELECT * FROM credit_card WHERE email = '${req.params.email}'`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(200).json(result.rows);
+
+      //res.end;
+    }
+  });
+  pool.end;
+} 
 /*
 	UPDATE customer SET $field = $newValue WHERE username = $username;
 
 //Add credit card
 	INSERT INTO credit_card (card_number, exp_date, code, email) VALUES
 	($card_number, $exp_date, $code, $email);
-
-//Get credit cards
-  SELECT * FROM credit_card WHERE email LIKE "$email";
-
 */
 
 
@@ -56,6 +65,7 @@ const Updateuser = (req, res) => {
 // Methods need to be created for all these
 module.exports = {
     Updateuser,
+    GetCreditCards,
     //createNewUser,
     //getUserByEmail,
     //updateUserDetails,
