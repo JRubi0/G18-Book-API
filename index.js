@@ -10,6 +10,7 @@ const port = 3000
 
 const book = require("./books/books.js")
 const search = require("./features/search.js")
+const users = require("./features/users.js")
 
 app.use(bodyParser.json());
 app.use(
@@ -47,6 +48,9 @@ app.get('/search/all/:page&:per_page', search.getBooks) // Diplays all books, on
 app.get('/search/genre/:genre', search.getBooksByGenre) // Diplays all books of the specified genre
 app.get('/search/top/:number', search.getBooksTopSellers) // Diplays the top sellers. Takes in a variable for how many to display, in order by copies sold
 app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number 
+
+//-------------------USER ROUTES----------------------
+//app.post('/user/update/:field&:newValue&:username', users.Updateuser)
 
 // cart routes that uses the book object for handling queries
 

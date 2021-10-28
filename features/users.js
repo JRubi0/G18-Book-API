@@ -6,6 +6,15 @@
 // app.post('/customer/payment', db.addCreditCard)        // call to add credit cards
 // app.get('/customer/payment', db.getCreditCard)         // call to pull all cards on account
 
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+})
+
 /*
 //I wrote the preliminary queries for these requirements  --Bryan
 //Create user
@@ -14,8 +23,23 @@
 
 //Get user
 	SELECT * FROM customer WHERE username LIKE "$username";
-
+*/
 //Update user
+const Updateuser = (req, res) => {
+  console.log(req.params.field + " " + req.params.newValue + " " + req.params.username);
+  $custnum = parseInt(req.params.username);
+  pool.query(`UPDATE customer SET ${req.params.field} = '${req.params.newValue}' WHERE customer_id = ${$custnum}`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(200).json(result.rows);
+
+      //res.end;
+    }
+  });
+  pool.end;
+} 
+/*
 	UPDATE customer SET $field = $newValue WHERE username = $username;
 
 //Add credit card
@@ -31,6 +55,7 @@
 
 // Methods need to be created for all these
 module.exports = {
+    Updateuser,
     //createNewUser,
     //getUserByEmail,
     //updateUserDetails,
