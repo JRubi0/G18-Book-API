@@ -21,7 +21,9 @@ const getBooks = (req, res) => {
         res.end;
       }
     });
-  } 
+    pool.end;
+  }
+
 
 const getBooksByGenre = (req, res) => {
   pool.query(`SELECT * FROM book WHERE genre=${req.params.genre}`, (err, result) => 
