@@ -19,7 +19,7 @@ const getBooks = (req, res) => {
       $perPage = 20;
     }
     $offsetVar = ($pageNum - 1) * $perPage;
-    console.log($offsetVar + " " + $perPage + " " + $pageNum);
+    //console.log($offsetVar + " " + $perPage + " " + $pageNum);
     pool.query(`SELECT * FROM book ORDER BY book_id LIMIT 20 OFFSET ${$offsetVar}`, (err, result) => 
     {
       if(!err)
