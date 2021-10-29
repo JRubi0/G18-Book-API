@@ -37,7 +37,7 @@ app.get('/book', book.getBooks) // gets all books
 app.get('/book/:book_id', book.getBookById) // gets book by ID number
 app.get('/book/isbn/:isbn13', book.getBookByISBN) // gets book by ISBN
 app.get('/author/:author_id', book.getAuthorsBooks, book.getAuthorsBooks) // gets book by ISBN
-//app.post('/books', book.createBook)
+app.post('/addbook/book_id/:book_id/title/:title/isbn/:isbn', book.createBook)
 //app.put('/books/:id', book.updateBook)
 //app.delete('/books/:id', book.deleteBook)
 

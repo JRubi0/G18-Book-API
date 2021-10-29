@@ -22,7 +22,7 @@ const getBooks = (req, res) =>
 
 const getBookById = (req, res) => 
 {
-  pool.query(`SELECT book.*, author.author_name
+  pool.query(`SELECT book.*, author.author_name, author.author_id
               FROM book, author
               WHERE book_id= ${req.params.book_id} AND author_id = (SELECT author_id FROM book_author WHERE book_id = ${req.params.book_id} LIMIT 1) 
               ORDER BY author_id ASC`, (err, result) => 
@@ -50,9 +50,9 @@ const getBookByISBN = (req, res) =>
 const getAuthorsBooks = (req, res) => 
 { 
   
-  pool.query(`SELECT book_id, title, isbn13, author_name 
-              FROM author, book
-              WHERE book_id = SELECT book_id FROM book_author WHERE author_id='${req.params.author_id}'`, (err, result) => 
+  pool.query(`SELECT author.author_name, book_id, title, isbn13
+  FROM author, book
+  WHERE book_id = (SELECT book_id FROM book WHERE book_id = (SELECT book_id FROM book_author WHERE author_id='${req.params.author_id}')) AND author_id='${req.params.author_id}'`, (err, result) => 
   {
     if(!err)
     {
@@ -62,19 +62,18 @@ const getAuthorsBooks = (req, res) =>
   pool.end;
 }
 
+const createBook = (req, res) => {
+  const { book_id, title, isbn } = req.body
 
-
-const createBook = (request, response) => {
-  const { name, email } = request.body
-
-  pool.query('INSERT INTO book (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
-    if (error) {
-      throw error
+  pool.query(`INSERT INTO book (book_id, title, isbn13) VALUES ('${req.params.book_id}','${req.params.title}','${req.params.isbn13}')`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(201).send(`Book added with ID: ${result.insertId}`);
     }
-    response.status(201).send(`Book added with ID: ${result.insertId}`)
-  })
+  });
+  pool.end;
 }
-
 
 
 module.exports = {
@@ -82,7 +81,7 @@ module.exports = {
   getBookById,
   getBookByISBN,
   getAuthorsBooks,
-  //createBook,
+  createBook,
   //updateBook,
   //deleteBook,
 } 
