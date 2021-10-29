@@ -10,6 +10,7 @@ const port = 3000
 
 const book = require("./books/books.js")
 const search = require("./features/search.js")
+const users = require("./features/users.js")
 
 app.use(bodyParser.json());
 app.use(
@@ -43,8 +44,14 @@ app.post('/addbook/book_id/:book_id/title/:title/isbn/:isbn', book.createBook)
 
 
 //-------------------SEARCH ROUTES----------------------
-app.get('/search/:page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
+app.get('/search/all/:page&:per_page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
+app.get('/search/genre/:genre', search.getBooksByGenre) // Diplays all books of the specified genre
+app.get('/search/top/:number', search.getBooksTopSellers) // Diplays the top sellers. Takes in a variable for how many to display, in order by copies sold
+app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number 
 
+//-------------------USER ROUTES----------------------
+//app.post('/user/update/:field&:newValue&:username', users.Updateuser)
+app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
 
 // cart routes that uses the book object for handling queries
 

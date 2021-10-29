@@ -37,6 +37,24 @@ function updateQueryStringParameter(uri, key, value) {
   var re = new RegExp("([?&])")
 }*/
 
+/*
+//Preliminary queries for cart    --Bryan
+//Create shopping cart
+//Without specifying a cart_id it will automatically create a new one using the last cart_id + 1
+	INSERT INTO cart (customer_id ) VALUES
+	($customer_id);
+
+//Add book to cart
+	INSERT INTO cart (customer_id, book_id, cart_id) VALUES
+	($customer_id, $book_id, $cart_id);
+
+//Get cart
+	SELECT * FROM cart WHERE cart_id = $cart_id;
+
+//Remove book from cart
+	DELETE FROM cart WHERE cart_id = $cart_id AND book_id = $book_id;
+
+*/
 
 // Methods need to be created for all these
 module.exports = {
