@@ -1,3 +1,2 @@
 .env
-scripts/db.php
-scripts\db.php
+scripts/
