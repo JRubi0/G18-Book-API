@@ -22,9 +22,9 @@ const getBooks = (req, res) =>
 
 const getBookById = (req, res) => 
 {
-  pool.query(`SELECT book.*, author.author_name, author.author_id
-              FROM book, author
-              WHERE book_id= ${req.params.book_id} AND author_id = (SELECT author_id FROM book_author WHERE book_id = ${req.params.book_id} LIMIT 1) 
+  pool.query(`SELECT book.*, author.author_name, author.author_id, publisher.publisher_name
+              FROM book, author, publisher
+              WHERE book_id= ${req.params.book_id} AND author_id = (SELECT author_id FROM book_author WHERE book_id = ${req.params.book_id} LIMIT 1) AND publisher_id = (SELECT publisher_id FROM book)
               ORDER BY author_id ASC`, (err, result) => 
   {
     if(!err)
@@ -52,7 +52,7 @@ const getAuthorsBooks = (req, res) =>
   
   pool.query(`SELECT author.author_name, book_id, title, isbn13
   FROM author, book
-  WHERE book_id = (SELECT book_id FROM book WHERE book_id = (SELECT book_id FROM book_author WHERE author_id='${req.params.author_id}')) AND author_id='${req.params.author_id}'`, (err, result) => 
+  WHERE book_id IN (SELECT book_id FROM book WHERE book_id IN (SELECT book_id FROM book_author WHERE author_id='${req.params.author_id}')) AND author_id='${req.params.author_id}'`, (err, result) => 
   {
     if(!err)
     {
@@ -63,9 +63,17 @@ const getAuthorsBooks = (req, res) =>
 }
 
 const createBook = (req, res) => {
-  const { book_id, title, isbn } = req.body
-
-  pool.query(`INSERT INTO book (book_id, title, isbn13) VALUES ('${req.params.book_id}','${req.params.title}','${req.params.isbn13}')`, (err, result) => 
+  //title&:isbn&:desc&:genre&:copiessold&:author&:publisher&:publishdate
+  /* 
+  VALUES ('${decodeURIComponent(req.params.title)}', '${decodeURIComponent(req.params.isbn)}', '${decodeURIComponent(req.params.desc)}',
+          '${decodeURIComponent(req.params.genre)}', '${decodeURIComponent(req.params.copiessold)}', '${decodeURIComponent(req.params.publishdate)}
+  */
+  pool.query(`INSERT INTO book (title, isbn13, descr, genre, copiessold, publishdate)
+              OUTPUT inserted.title, inserted.isbn13, inserted.decr, inserted.genre, inserted.copiessold, inserted.publishdate
+              INTO author (author, bio, publisher)
+          ')
+          ,
+          `, (err, result) => 
   {
     if(!err)
     {
