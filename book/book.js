@@ -20,7 +20,7 @@ const getBooks = (req, res) =>
   pool.end;
 }
 
-const getBookById = (req, res) => 
+const getBookById = (req, res) => //FIX publisher thing
 {
   pool.query(`SELECT book.*, author.author_name, author.author_id, publisher.publisher_name
               FROM book, author, publisher
@@ -47,7 +47,7 @@ const getBookByISBN = (req, res) =>
   pool.end;
 }
 
-const getAuthorsBooks = (req, res) => 
+const getAuthorsBooks = (req, res) => //Add identities
 { 
   
   pool.query(`SELECT author.author_name, book_id, title, isbn13
@@ -68,12 +68,11 @@ const createBook = (req, res) => {
   VALUES ('${decodeURIComponent(req.params.title)}', '${decodeURIComponent(req.params.isbn)}', '${decodeURIComponent(req.params.desc)}',
           '${decodeURIComponent(req.params.genre)}', '${decodeURIComponent(req.params.copiessold)}', '${decodeURIComponent(req.params.publishdate)}
   */
-  pool.query(`INSERT INTO book (title, isbn13, descr, genre, copiessold, publishdate)
-              OUTPUT inserted.title, inserted.isbn13, inserted.decr, inserted.genre, inserted.copiessold, inserted.publishdate
-              INTO author (author, bio, publisher)
-          ')
-          ,
-          `, (err, result) => 
+  pool.query(`BEGIN;
+              INSERT INTO book (title, isbn13, descr, genre, copies_sold, publication_date) VALUES (33,1,1,1,1, '1999-10-10');
+              INSERT INTO author (author_name, bio) VALUES (33,1);
+              COMMIT;
+              ROLLBACK;')`, (err, result) => 
   {
     if(!err)
     {
