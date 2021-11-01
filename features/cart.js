@@ -1,37 +1,43 @@
-/* Not active yet also this top section will be in the index.js file later.
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+})
 
-// cart routes that uses the db object for handling queries
-app.post('/cart'), db.createNew)        // call to create new cart CREATE_NEW
-app.put('/cart/items/add', db.updateTo)       // call to update book(s) in cart UPDATE_TO
-app.get('/cart/items', db.getData)     // call to list all book(s) in cart GET_DATA
-app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart DELETE_THIS
+/*
+app.post('/cart/new'), db.createNewCart) // call to create new cart
+app.put('/cart/items/add', db.addCartItem) // call to update book(s) in cart 
+app.get('/cart/items', db.getCartItems)  // call to list all book(s) in cart
+app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart 
 */
+/*
+const createNewCart = (req, res) => 
+{
+  pool.query(`BEGIN;
+              INSERT INTO publisher (publisher_name) VALUES ('${decodeURIComponent(req.params.publisher)}');
+              INSERT INTO author (author_name) VALUES ('${decodeURIComponent(req.params.author)}');
+              INSERT INTO book (publisher_id, title, isbn13, descr, genre, copies_sold, publication_date) VALUES ((currval(pg_get_serial_sequence('publisher','publisher_id'))), '${decodeURIComponent(req.params.title)}', '${decodeURIComponent(req.params.isbn)}', '${decodeURIComponent(req.params.desc)}', '${decodeURIComponent(req.params.genre)}', '${decodeURIComponent(req.params.copiessold)}', '${decodeURIComponent(req.params.publishdateymd)}');
+              INSERT INTO book_author (book_id, author_id) VALUES ((currval(pg_get_serial_sequence('book','book_id'))), (currval(pg_get_serial_sequence('author','author_id')))) RETURNING book_id AS resultid;
+              COMMIT;
+              `, (err, result) => 
+  {
+    if(!err)
+    { 
+      res.status(201).send(`Book added with ID: ${result.insertid}`)
+    }
 
-/*const queryString = window.Location.
-console.log(queryString);
-const urlParams = new URLSearchParams(queryString);
-if (console.log(urlParams.has('cart'))) {
-  const CREATE_NEW =
-    'INSERT INTO cart(cart_id, customer_id, book_id) VALUES (2, 3, 76)';
-  if (console.log(urlParams.has('items'))) {
-    const GET_DATA = 0;
-    if (console.log(urlParams.has('add'))) {
-      const UPDATE_TO = 0;
-    }
-    if (console.log(urlParams.has('delete'))) {
-      const DELETE_THIS = 0;
-    }
-  }
+  });
+  pool.end; 
 }*/
 
-/*const createNew = (request, response) => {
-  pool.query(this.CREATE_NEW, (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-} */
+
+
+
+
+
 /*
 function updateQueryStringParameter(uri, key, value) {
   var re = new RegExp("([?&])")
@@ -56,12 +62,7 @@ function updateQueryStringParameter(uri, key, value) {
 
 */
 
-// Methods need to be created for all these
 module.exports = {
-  //CREATE_NEW,
-  //GET_DATA,
-  //UPDATE_TO,
-  //DELETE_THIS,
   //createNewCart,
   //addCartItem,
   //getCartItems,
