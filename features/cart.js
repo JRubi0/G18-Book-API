@@ -6,38 +6,27 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 })
-
 /*
-app.post('/cart/new'), db.createNewCart) // call to create new cart
-app.put('/cart/items/add', db.addCartItem) // call to update book(s) in cart 
-app.get('/cart/items', db.getCartItems)  // call to list all book(s) in cart
-app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart 
+createNewCart // call to create new cart
+addCartItem // call to update book(s
+getCartItems  // call to list all book(s) in cart
+deleteCartItem // call to delete a book from cart 
 */
 
-
-/*
 const createNewCart = (req, res) => 
 {
   pool.query(`BEGIN;
-              INSERT INTO publisher (publisher_name) VALUES ('${decodeURIComponent(req.params.publisher)}');
-              INSERT INTO author (author_name) VALUES ('${decodeURIComponent(req.params.author)}');
-              INSERT INTO book (publisher_id, title, isbn13, descr, genre, copies_sold, publication_date) VALUES ((currval(pg_get_serial_sequence('publisher','publisher_id'))), '${decodeURIComponent(req.params.title)}', '${decodeURIComponent(req.params.isbn)}', '${decodeURIComponent(req.params.desc)}', '${decodeURIComponent(req.params.genre)}', '${decodeURIComponent(req.params.copiessold)}', '${decodeURIComponent(req.params.publishdateymd)}');
-              INSERT INTO book_author (book_id, author_id) VALUES ((currval(pg_get_serial_sequence('book','book_id'))), (currval(pg_get_serial_sequence('author','author_id')))) RETURNING book_id AS resultid;
+              INSERT INTO cart (customer_id ) VALUES ('SdecodeURIComponent(req.params.customer_id)}');
               COMMIT;
               `, (err, result) => 
   {
     if(!err)
     { 
-      res.status(201).send(`Book added with ID: ${result.insertid}`)
+      res.status(201).send(`Book added with ID: ${result.cart_id}`)
     }
 
   });
   pool.end; 
-}*/
-
-
-
-
 
 
 /*
