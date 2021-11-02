@@ -11,6 +11,7 @@ const port = 3000
 const book = require("./book/book.js")
 const search = require("./features/search.js")
 const users = require("./features/users.js")
+const review = require("./features/reviews.js")
 
 app.use(bodyParser.json());
 app.use(
@@ -59,6 +60,12 @@ app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit card
 // app.put('/cart/items/add', db.addCartItem) // call to update book(s) in cart 
 // app.get('/cart/items', db.getCartItems)  // call to list all book(s) in cart
 // app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart 
+
+//-------------------REVIEW ROUTES----------------------
+app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment)
+app.post('/rating/Add/:book_id&:star_rating&:customer_id', review.postRating)
+app.get('/review/all', review.GetReviews)                 //Gets all Reviews and comments
+app.get('/rating/:book_id', review.getRating)
 
 // Start server
 app.listen(port, () => {
