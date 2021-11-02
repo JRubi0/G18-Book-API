@@ -62,7 +62,7 @@ app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit card
 // app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart 
 
 //-------------------REVIEW ROUTES----------------------
-app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment)
+app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
 app.post('/rating/Add/:book_id&:star_rating&:customer_id', review.postRating)
 app.get('/review/all', review.getReviews)                 //Gets all Reviews and comments
 app.get('/rating/:book_id', review.getRating)
