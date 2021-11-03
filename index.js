@@ -8,11 +8,12 @@ dotenv.config({ path: './.env' });// Set path to .env file
 
 const port = 3000
 
-const book = require("./book/book.js")
-const search = require("./features/search.js")
-const users = require("./features/users.js")
-const cart = require("./features/cart.js")
-const review = require("./features/reviews.js")
+const search = require("./features/search.js")       // feature #1 Book Browsing and Search
+const users = require("./features/users.js")         // feature #2 Profile Management
+const cart = require("./features/cart.js")           // feature #3 Shopping Cart
+const book = require("./book/book.js")               // feature #4 Book Details
+const review = require("./features/reviews.js")      // feature #5 Book Rating and Commenting
+const wishlist = require("./features/wishlist.js")   // feature #6 Wish List Management
 
 app.use(bodyParser.json());
 app.use(
@@ -56,16 +57,23 @@ app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all boo
 app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
 
 //-------------------CART ROUTES----------------------
-app.post('/cart/new/:customer_id', cart.createNewCart) // Creates new cart for customer_id
-// app.put('/cart/items/add', db.addCartItem) // call to update book(s) in cart 
-// app.get('/cart/items', db.getCartItems)  // call to list all book(s) in cart
-// app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart 
+// app.post('/cart/:customer_id/new', cart.createNewCart) // Creates new cart for customer_id
+// app.put('/cart/items/add', cart.addCartItem) // call to update book(s) in cart 
+// app.get('/cart/items', cart.getCartItems)  // call to list all book(s) in cart
+// app.delete('/cart/items/delete', cart.deleteCartItem) // call to delete a book from cart 
 
 //-------------------REVIEW ROUTES----------------------
 app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
 app.post('/rating/Add/:book_id&:star_rating&:customer_id', review.postRating)
 app.get('/review/all', review.getReviews)                 //Gets all Reviews and comments
 app.get('/rating/:book_id', review.getRating)
+
+//-------------------WISHLIST ROUTES----------------------
+//app.post('/wishlist/new/:customer_id&:wishlist_name', wishlist.createNewWishlist) // Creates new wishlist for customer_id with unique name
+//app.put('/wishlist/item/add', wishlist.addWishlistItem) // Add book(s) in wishlist 
+//app.get('/wishlist/item', wishlist.getWishlistItems)  // call to list all book(s) in cart
+//app.delete('/wishlist/item/delete', wishlist.deleteWishlistItem) // Remove a book from wishlist
+//app.put('/wishlist/item/tocart', wishlist.wishlistToCart) // move a book from wishlist to cart.
 
 // Start server
 app.listen(port, () => {
