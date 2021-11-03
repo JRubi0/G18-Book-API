@@ -6,35 +6,35 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 })
-/* CODE is base i complete.
+/* Still working on
 
 
-// Creates a new Cart linked to customer_id
+// Creates a new Cart linked to customer_id with a book_id
 // cart_id generated and user does not need to know.
 const createNewCart = (req, res) => {
   pool.query(`BEGIN;
-              INSERT INTO cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
+              INSERT INTO cart (customer_id, book_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
+              INSERT INTO cart (book_id) VALUES ('${decodeURIComponent(req.params.book_id)}');
               COMMIT;
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Cart ID: ${result.cart_id}`) // UPDATE "customer_firstname created shopping cart"
+      res.status(201).send(`Book was succcessfully added to cart.`)
     }
 
   });
   pool.end;
 }
 
-// Updates cart with a book
+// Updates cart with another book
 // See how to add multiple books under same customer_id after cart has already been added. 
-// See about changing to INSERT INTO ... VALUES ... ON CONFLICT.... UPDATE SET ....
 const addCartItem = (req, res) => {
   pool.query(`BEGIN;
-              UPDATE cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
-              UPDATE cart (book_id) VALUES ('${decodeURIComponent(req.params.book_id)}');
+              INSERT INTO cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
+              INSERT INTO cart (book_id) VALUES ('${decodeURIComponent(req.params.book_id)}');
               COMMIT;
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Cart ID: ${result.cart_id}`) //  UPDATE "book_title added to cart"
+      res.status(201).send(`Book : ${result.cart_id}`) //  UPDATE "book_title added to cart"
     }
 
   });
@@ -46,7 +46,7 @@ const addCartItem = (req, res) => {
 const getCartItems = (req, res) => 
 { 
   
-  pool.query(`SELECT * FROM cart WHERE cart_id ='${req.params.cart_id}'`, (err, result) => 
+  pool.query(`SELECT book_id FROM cart WHERE customer_id ='${req.params.customer_id}' AND book_id IS NOT NULL`, (err, result) => 
   {
     if(!err)
     {
@@ -68,7 +68,19 @@ const deleteCartItem = (req, res) => {
   });
   pool.end;
 }
-*/
+
+const deleteAllItems = (req, res) => {
+  pool.query(`BEGIN;
+              DELETE * FROM cart WHERE cart_id = '${req.params.cart_id}';
+              COMMIT;
+              `, (err, result) => {
+    if (!err) {
+      res.status(201).send(`Cart ID: ${result.cart_id}`) // UPDATE "book_title removed from shopping cart"
+    }
+
+  });
+  pool.end;
+}
 
 /*
 function updateQueryStringParameter(uri, key, value) {
@@ -98,5 +110,6 @@ function updateQueryStringParameter(uri, key, value) {
     //createNewCart,
     //addCartItem,
     //getCartItems,
-    //deleteCartItem
+    //deleteCartItem,
+    //deleteAllItems
   }

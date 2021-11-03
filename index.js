@@ -57,10 +57,10 @@ app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all boo
 app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
 
 //-------------------CART ROUTES----------------------
-// app.post('/cart/:customer_id/new', cart.createNewCart) // Creates new cart for customer_id
-// app.put('/cart/items/add', cart.addCartItem) // call to update book(s) in cart 
-// app.get('/cart/items', cart.getCartItems)  // call to list all book(s) in cart
-// app.delete('/cart/items/delete', cart.deleteCartItem) // call to delete a book from cart 
+app.post('/cart/new/:customer_id&:book_id', cart.createNewCart) // Creates new cart for customer_id
+app.put('/cart/add/:customer_id&:book_id', cart.addCartItem) // call to update book(s) in cart 
+app.get('/cart/items/:customer_id', cart.getCartItems)  // call to list all book(s) in cart
+app.delete('/cart/items/remove/:customer_id&:book_id', cart.deleteCartItem) // call to delete a book from cart 
 
 //-------------------REVIEW ROUTES----------------------
 app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
