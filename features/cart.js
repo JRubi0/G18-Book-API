@@ -13,21 +13,18 @@ getCartItems  // call to list all book(s) in cart
 deleteCartItem // call to delete a book from cart 
 */
 
-const createNewCart = (req, res) => 
-{
+const createNewCart = (req, res) => {
   pool.query(`BEGIN;
-              INSERT INTO cart (customer_id ) VALUES ('SdecodeURIComponent(req.params.customer_id)}');
+              INSERT cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
               COMMIT;
-              `, (err, result) => 
-  {
-    if(!err)
-    { 
-      res.status(201).send(`Book added with ID: ${result.cart_id}`)
+              `, (err, result) => {
+    if (!err) {
+      res.status(201).send(`Cart ID: ${result.cart_id}`)
     }
 
   });
-  pool.end; 
-
+  pool.end;
+}
 
 /*
 function updateQueryStringParameter(uri, key, value) {
@@ -53,9 +50,6 @@ function updateQueryStringParameter(uri, key, value) {
 
 */
 
-module.exports = {
-  //createNewCart,
-  //addCartItem,
-  //getCartItems,
-  //deleteCartItem
+  module.exports = {
+    createNewCart
   }
