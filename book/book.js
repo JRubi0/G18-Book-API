@@ -53,6 +53,18 @@ const getBookByISBN = (req, res) =>
   pool.end;
 }
 
+const getAuthors = (req, res) => 
+{
+  pool.query(`SELECT * FROM author ORDER BY author_id ASC`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(200).json(result.rows);
+    }
+  });
+  pool.end;
+}
+
 const getAuthorsBooks = (req, res) => 
 { 
   
@@ -105,6 +117,7 @@ module.exports = {
   getBooks,
   getBookById,
   getBookByISBN,
+  getAuthors,
   getAuthorsBooks,
   createBook,
   createAuthor

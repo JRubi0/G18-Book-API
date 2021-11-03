@@ -37,11 +37,10 @@ app.get('/', (request, response) => {
 app.get('/book', book.getBooks) // gets all books
 app.get('/book/:book_id', book.getBookById) // gets book by ID number
 app.get('/book/isbn/:isbn13', book.getBookByISBN) // gets book by ISBN
-app.get('/author/:author_id', book.getAuthorsBooks, book.getAuthorsBooks) // gets book by ISBN
-app.post('/book/add/:title&:isbn&:desc&:genre&:copiessold&:author&:publisher&:publishdateymd', book.createBook) 
-app.post('/author/add/:author&:bio&:publisher', book.createAuthor)
-//app.put('/books/:id', book.updateBook)
-//app.delete('/books/:id', book.deleteBook)
+app.get('/author', book.getAuthors) // gets all authors
+app.get('/book/author/:author_id', book.getAuthorsBooks) // gets book by ISBN
+app.post('/book/add/:title&:isbn&:desc&:genre&:copiessold&:author&:publisher&:publishdateymd', book.createBook) //creates new book, author, & publisher
+app.post('/book/author/add/:author&:bio&:publisher', book.createAuthor) //creates new author
 
 
 //-------------------SEARCH ROUTES----------------------
