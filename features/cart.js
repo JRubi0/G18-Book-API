@@ -15,11 +15,11 @@ deleteCartItem // call to delete a book from cart
 
 const createNewCart = (req, res) => {
   pool.query(`BEGIN;
-              INSERT cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
+              INSERT INTO cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
               COMMIT;
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Cart ID: ${result.cart_id}`)
+      res.status(201).send(`Cart ID: ${result.cart_id}`) // Update this later
     }
 
   });
