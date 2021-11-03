@@ -11,6 +11,7 @@ const port = 3000
 const book = require("./book/book.js")
 const search = require("./features/search.js")
 const users = require("./features/users.js")
+const review = require("./features/reviews.js")
 
 app.use(bodyParser.json());
 app.use(
@@ -53,13 +54,17 @@ app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all boo
 //app.post('/user/update/:field&:newValue&:username', users.Updateuser)
 app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
 
-// cart routes that uses the book object for handling queries
+//-------------------CART ROUTES----------------------
+// app.post('/cart/new'), db.createNewCart) // call to create new cart
+// app.put('/cart/items/add', db.addCartItem) // call to update book(s) in cart 
+// app.get('/cart/items', db.getCartItems)  // call to list all book(s) in cart
+// app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart 
 
-//app.post('/cart', db.createNew) // call to create new cart CREATE_NEW
-//app.put('/cart/items/add', db.updateTo)       // call to update book(s) in cart UPDATE_TO
-//app.get('/cart/items', db.getData)     // call to list all book(s) in cart GET_DATA
-//app.delete('/cart/items/delete', db.deleteCartItem) // call to delete a book from cart DELETE_THIS
-
+//-------------------REVIEW ROUTES----------------------
+app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
+app.post('/rating/Add/:book_id&:star_rating&:customer_id', review.postRating)
+app.get('/review/all', review.getReviews)                 //Gets all Reviews and comments
+app.get('/rating/:book_id', review.getRating)
 
 // Start server
 app.listen(port, () => {
