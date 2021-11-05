@@ -24,8 +24,8 @@ const pool = new Pool({
 //Get user
 	SELECT * FROM customer WHERE username LIKE "$username";
 */
-//Update user
-const Updateuser = (req, res) => {
+
+const UpdateUser = (req, res) => {
   console.log(req.params.field + " " + req.params.newValue + " " + req.params.username);
   $custnum = parseInt(req.params.username);
   pool.query(`UPDATE customer SET ${req.params.field} = '${req.params.newValue}' WHERE customer_id = ${$custnum}`, (err, result) => 
