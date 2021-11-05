@@ -49,7 +49,7 @@ const getBooksByGenre = (req, res) => {
 
 const getBooksTopSellers = (req, res) => {
   //console.log(parseInt(req.params.number));
-  pool.query(`SELECT * FROM book ORDER BY copies_sold LIMIT ${req.params.number}`, (err, result) => 
+  pool.query(`SELECT * FROM book ORDER BY copies_sold DESC LIMIT ${req.params.number}`, (err, result) => 
   {
     if(!err)
     {

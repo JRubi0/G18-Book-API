@@ -6,20 +6,76 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 })
-/*
-createNewCart // call to create new cart
-addCartItem // call to update book(s
-getCartItems  // call to list all book(s) in cart
-deleteCartItem // call to delete a book from cart 
-*/
+/* Still working on
 
+
+// Creates a new Cart linked to customer_id with a book_id
+// cart_id generated and user does not need to know.
 const createNewCart = (req, res) => {
   pool.query(`BEGIN;
-              INSERT cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
+              INSERT INTO cart (customer_id, book_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
+              INSERT INTO cart (book_id) VALUES ('${decodeURIComponent(req.params.book_id)}');
               COMMIT;
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Cart ID: ${result.cart_id}`)
+      res.status(201).send(`Book was succcessfully added to cart.`)
+    }
+
+  });
+  pool.end;
+}
+
+// Updates cart with another book
+// See how to add multiple books under same customer_id after cart has already been added. 
+const addCartItem = (req, res) => {
+  pool.query(`BEGIN;
+              INSERT INTO cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
+              INSERT INTO cart (book_id) VALUES ('${decodeURIComponent(req.params.book_id)}');
+              COMMIT;
+              `, (err, result) => {
+    if (!err) {
+      res.status(201).send(`Book : ${result.cart_id}`) //  UPDATE "book_title added to cart"
+    }
+
+  });
+  pool.end;
+}
+
+// Lists all the items in the cart.
+// 
+const getCartItems = (req, res) => 
+{ 
+  
+  pool.query(`SELECT book_id FROM cart WHERE customer_id ='${req.params.customer_id}' AND book_id IS NOT NULL`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.status(200).json(result.rows);
+    }
+  });
+  pool.end;
+}
+
+const deleteCartItem = (req, res) => {
+  pool.query(`BEGIN;
+              DELETE FROM cart WHERE cart_id = '${req.params.cart_id}' AND book_id = '${req.params.book_id}';
+              COMMIT;
+              `, (err, result) => {
+    if (!err) {
+      res.status(201).send(`Cart ID: ${result.cart_id}`) // UPDATE "book_title removed from shopping cart"
+    }
+
+  });
+  pool.end;
+}
+
+const deleteAllItems = (req, res) => {
+  pool.query(`BEGIN;
+              DELETE * FROM cart WHERE cart_id = '${req.params.cart_id}';
+              COMMIT;
+              `, (err, result) => {
+    if (!err) {
+      res.status(201).send(`Cart ID: ${result.cart_id}`) // UPDATE "book_title removed from shopping cart"
     }
 
   });
@@ -51,5 +107,9 @@ function updateQueryStringParameter(uri, key, value) {
 */
 
   module.exports = {
-    createNewCart
+    //createNewCart,
+    //addCartItem,
+    //getCartItems,
+    //deleteCartItem,
+    //deleteAllItems
   }
