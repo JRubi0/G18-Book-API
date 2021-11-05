@@ -52,6 +52,19 @@ const GetCreditCards = (req, res) => {
   });
   pool.end;
 } 
+const postCreditCards = (req, res) => {
+  //console.log(req.params.card_number/exp.date/code/email);
+  //add credit card for the user
+  pool.query(`INSERT INTO users (credit_card,exp_date,code,email) 
+                VALUES ${req.params.card_number}, ${req.params.exp_date}, ${req.params.code}, ${req.params.email}'`, (err, result) => 
+  {
+    if(!err)
+    {
+      res.end;
+    }
+  });
+  pool.end;
+} 
 /*
 	UPDATE customer SET $field = $newValue WHERE username = $username;
 
@@ -66,6 +79,7 @@ const GetCreditCards = (req, res) => {
 module.exports = {
     Updateuser,
     GetCreditCards,
+    postCreditCards,
     //createNewUser,
     //getUserByEmail,
     //updateUserDetails,
