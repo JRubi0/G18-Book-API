@@ -35,8 +35,7 @@ app.get('/', (request, response) => {
      *   DELETE     |  "Delete"  |  DELETE
      */
 
-//-------------------BOOK ROUTES----------------------
-
+//-------------------BOOK ROUTES----------------------    
 app.get('/book', book.getBooks) // gets all books
 app.get('/book/:book_id', book.getBookById) // gets book by ID number
 app.get('/book/isbn/:isbn13', book.getBookByISBN) // gets book by ISBN
