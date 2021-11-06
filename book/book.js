@@ -113,7 +113,8 @@ const createAuthor = (req, res) => //Add identities
 }
 
 
-module.exports = {
+module.exports = 
+{
   getBooks,
   getBookById,
   getBookByISBN,

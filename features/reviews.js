@@ -48,7 +48,7 @@ const getReviews = (req, res) => {
   pool.end;
 } 
 
-const getRating = (req, res) => {
+const getAvgRating = (req, res) => {
   //console.log(parseInt(req.params.rating));
   pool.query(`SELECT title, ROUND(AVG(star_rating)) as AverageRating FROM book, reviews 
                 WHERE book.book_id = reviews.book_id AND book.book_id = ${req.params.book_id} GROUP BY book.book_id`, (err, result) => 
@@ -67,5 +67,5 @@ module.exports = {
     postComment,
     postRating,
     getReviews,
-    getRating,
+    getAvgRating,
   } 

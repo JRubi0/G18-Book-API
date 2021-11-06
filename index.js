@@ -44,17 +44,17 @@ app.get('/book/author/:author_id', book.getAuthorsBooks) // gets book by ISBN
 app.post('/book/add/:title&:isbn&:desc&:genre&:copiessold&:author&:publisher&:publishdateymd', book.createBook) //creates new book, author, & publisher
 app.post('/book/author/add/:author&:bio&:publisher', book.createAuthor) //creates new author
 
-
 //-------------------SEARCH ROUTES----------------------
 app.get('/search/all/:page&:per_page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
 app.get('/search/genre/:genre', search.getBooksByGenre) // Diplays all books of the specified genre
 app.get('/search/top/:number', search.getBooksTopSellers) // Diplays the top sellers. Takes in a variable for how many to display, in order by copies sold
-app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number 
+app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number
 
 //-------------------USER ROUTES----------------------
-//app.post('/user/update/:field&:newValue&:username', users.Updateuser)
+app.post('/user/update/:field&:newValue&:username', users.UpdateUser)
 app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
-app.post('/user/credit_card/add/:credit_card&:exp_date&:code&:email', users.postCreditCards) //Gets all credit cards for user specified by email address
+//app.post('/user/credit_card/add/:credit_card&:exp_date&:code&:email', users.PostCreditCards) //Gets all credit cards for user specified by email address
+
 //-------------------CART ROUTES----------------------
 //app.post('/cart/new/:customer_id&:book_id', cart.createNewCart) // Creates new cart for customer_id
 //app.put('/cart/add/:customer_id&:book_id', cart.addCartItem) // call to update book(s) in cart 
@@ -62,10 +62,10 @@ app.post('/user/credit_card/add/:credit_card&:exp_date&:code&:email', users.post
 //app.delete('/cart/items/remove/:customer_id&:book_id', cart.deleteCartItem) // call to delete a book from cart 
 
 //-------------------REVIEW ROUTES----------------------
-app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
-app.post('/rating/Add/:book_id&:star_rating&:customer_id', review.postRating)
-app.get('/review/all', review.getReviews)                 //Gets all Reviews and comments
-app.get('/rating/:book_id', review.getRating)
+app.get('/review/all', review.getReviews)   //Gets all Reviews and comments
+app.get('/rating/:book_id', review.getAvgRating)
+app.post('/review/add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
+app.post('/rating/add/:book_id&:star_rating&:customer_id', review.postRating)
 
 //-------------------WISHLIST ROUTES----------------------
 //app.post('/wishlist/new/:customer_id&:wishlist_name', wishlist.createNewWishlist) // Creates new wishlist for customer_id with unique name

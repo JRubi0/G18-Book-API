@@ -52,7 +52,7 @@ const GetCreditCards = (req, res) => {
   });
   pool.end;
 } 
-const postCreditCards = (req, res) => {
+const PostCreditCards = (req, res) => {
   //console.log(req.params.card_number/exp.date/code/email);
   //add credit card for the user
   pool.query(`INSERT INTO users (credit_card,exp_date,code,email) 
@@ -77,9 +77,9 @@ const postCreditCards = (req, res) => {
 
 // Methods need to be created for all these
 module.exports = {
-    Updateuser,
+    UpdateUser,
     GetCreditCards,
-    postCreditCards,
+    PostCreditCards,
     //createNewUser,
     //getUserByEmail,
     //updateUserDetails,
