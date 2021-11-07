@@ -6,27 +6,22 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 })
-/* Still working on
-
 
 // Creates a new Cart linked to customer_id with a book_id
 // cart_id generated and user does not need to know.
 const createNewCart = (req, res) => {
-  pool.query(`BEGIN;
-              INSERT INTO cart (customer_id, book_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
-              INSERT INTO cart (book_id) VALUES ('${decodeURIComponent(req.params.book_id)}');
-              COMMIT;
+  pool.query(`INSERT INTO cart (customer_id, book_id) 
+              VALUES ('${decodeURIComponent(req.params.customer_id)}', '${decodeURIComponent(req.params.book_id)}');
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Book was succcessfully added to cart.`)
+      res.status(201).send(`Book ` + (req.params.book_id) + ` was succcessfully added to cart.`)
     }
 
   });
   pool.end;
 }
 
-// Updates cart with another book
-// See how to add multiple books under same customer_id after cart has already been added. 
+// Add another book to cart
 const addCartItem = (req, res) => {
   pool.query(`BEGIN;
               INSERT INTO cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
@@ -107,9 +102,9 @@ function updateQueryStringParameter(uri, key, value) {
 */
 
   module.exports = {
-    //createNewCart,
-    //addCartItem,
-    //getCartItems,
-    //deleteCartItem,
-    //deleteAllItems
+    createNewCart,
+    addCartItem,
+    getCartItems,
+    deleteCartItem,
+    deleteAllItems
   }
