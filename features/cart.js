@@ -39,7 +39,7 @@ const getCartItems = (req, res) => {
 }
 
 // Deletes a book from customer's cart
-// THIS METHOD IS COMPLETE
+// THIS METHOD has a few bugs that need to be worked out
 const deleteCartItem = (req, res) => {
   pool.query(`BEGIN;
               DELETE FROM cart
