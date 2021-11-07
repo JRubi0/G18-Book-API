@@ -7,9 +7,9 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 })
 
-// Creates a new Cart linked to customer_id with a book_id
+// Creates a new Cart linked to customer_id that is empty
 // cart_id generated and user does not need to know.
-const createNewCart = (req, res) => {
+const addCartItem = (req, res) => {
   pool.query(`INSERT INTO cart (customer_id, book_id) 
               VALUES ('${decodeURIComponent(req.params.customer_id)}', '${decodeURIComponent(req.params.book_id)}');
               `, (err, result) => {
@@ -21,29 +21,16 @@ const createNewCart = (req, res) => {
   pool.end;
 }
 
-// Add another book to cart
-const addCartItem = (req, res) => {
-  pool.query(`BEGIN;
-              INSERT INTO cart (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
-              INSERT INTO cart (book_id) VALUES ('${decodeURIComponent(req.params.book_id)}');
-              COMMIT;
-              `, (err, result) => {
-    if (!err) {
-      res.status(201).send(`Book : ${result.cart_id}`) //  UPDATE "book_title added to cart"
-    }
-
-  });
-  pool.end;
-}
-
 // Lists all the items in the cart.
-// 
-const getCartItems = (req, res) => 
-{ 
-  
-  pool.query(`SELECT book_id FROM cart WHERE customer_id ='${req.params.customer_id}' AND book_id IS NOT NULL`, (err, result) => 
-  {
-    if(!err)
+// THIS METHOD IS COMPLETE
+const getCartItems = (req, res) => { 
+  pool.query(`SELECT cart.book_id, book.title, book.price
+              FROM cart
+              INNER JOIN book
+              ON book.book_id = cart.book_id
+              WHERE customer_id ='${req.params.customer_id}'
+              `, (err, result) => {
+    if (!err)
     {
       res.status(200).json(result.rows);
     }
@@ -51,9 +38,18 @@ const getCartItems = (req, res) =>
   pool.end;
 }
 
+// Deletes a book from customer's cart
+// THIS METHOD IS COMPLETE
 const deleteCartItem = (req, res) => {
   pool.query(`BEGIN;
-              DELETE FROM cart WHERE cart_id = '${req.params.cart_id}' AND book_id = '${req.params.book_id}';
+              DELETE FROM cart
+              WHERE cart_id
+              IN (
+                SELECT cart_id
+                FROM cart
+                WHERE customer_id = '${req.params.customer_id}' 
+                AND book_id = '${req.params.book_id}'
+                LIMIT 1)
               COMMIT;
               `, (err, result) => {
     if (!err) {
@@ -64,9 +60,11 @@ const deleteCartItem = (req, res) => {
   pool.end;
 }
 
+// Deletes all books from customer's cart
+// THIS METHOD IS COMPLETE
 const deleteAllItems = (req, res) => {
   pool.query(`BEGIN;
-              DELETE * FROM cart WHERE cart_id = '${req.params.cart_id}';
+              DELETE FROM cart WHERE customer_id = '${req.params.customer_id}';
               COMMIT;
               `, (err, result) => {
     if (!err) {
@@ -77,32 +75,7 @@ const deleteAllItems = (req, res) => {
   pool.end;
 }
 
-/*
-function updateQueryStringParameter(uri, key, value) {
-  var re = new RegExp("([?&])")
-}*/
-
-/*
-//Preliminary queries for cart    --Bryan
-//Create shopping cart
-//Without specifying a cart_id it will automatically create a new one using the last cart_id + 1
-	INSERT INTO cart (customer_id ) VALUES
-	($customer_id);
-
-//Add book to cart
-	INSERT INTO cart (customer_id, book_id, cart_id) VALUES
-	($customer_id, $book_id, $cart_id);
-
-//Get cart
-	SELECT * FROM cart WHERE cart_id = $cart_id;
-
-//Remove book from cart
-	DELETE FROM cart WHERE cart_id = $cart_id AND book_id = $book_id;
-
-*/
-
   module.exports = {
-    createNewCart,
     addCartItem,
     getCartItems,
     deleteCartItem,
