@@ -9,7 +9,7 @@ dotenv.config({ path: './.env' });// Set path to .env file
 const port = 3000
 
 const search = require("./features/search.js")       // feature #1 Book Browsing and Search
-const users = require("./users.js")         // feature #2 Profile Management
+const users = require("./features/users.js")         // feature #2 Profile Management
 const cart = require("./features/cart.js")           // feature #3 Shopping Cart
 const book = require("./book/book.js")               // feature #4 Book Details
 const review = require("./features/reviews.js")      // feature #5 Book Rating and Commenting
@@ -54,7 +54,7 @@ app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all boo
 //-------------------USER ROUTES----------------------
 //app.post('/user/update/:field&:newValue&:username', users.Updateuser)
 app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
-app.post('/user/credit_card/add/:credit_card&:exp_date&:code&:email', users.postCreditCards) //Gets all credit cards for user specified by email address
+//app.post('/user/credit_card/add/:credit_card&:exp_date&:code&:email', users.postCreditCards) //Gets all credit cards for user specified by email address
 
 //-------------------CART ROUTES----------------------
 app.post('/cart/:customer_id&:book_id', cart.addCartItem) // Creates new cart for customer_id with book and updates cart
