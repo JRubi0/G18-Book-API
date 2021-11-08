@@ -7,7 +7,7 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 })
 
-//-------------------SEARCH QUERIES----------------------
+//-------------------BOOK QUERIES----------------------
 const getBooks = (req, res) => {
     $pageNum = parseInt(req.params.page);
     if (parseInt(req.params.per_page) != 'undefined')

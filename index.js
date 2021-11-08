@@ -11,7 +11,7 @@ const port = 3000
 const search = require("./features/search.js")       // feature #1 Book Browsing and Search
 const users = require("./features/users.js")         // feature #2 Profile Management
 const cart = require("./features/cart.js")           // feature #3 Shopping Cart
-const book = require("./features/book.js")           // feature #4 Book Details
+const book = require("./book/book.js")               // feature #4 Book Details
 const review = require("./features/reviews.js")      // feature #5 Book Rating and Commenting
 const wishlist = require("./features/wishlist.js")   // feature #6 Wish List Management
 
@@ -36,7 +36,7 @@ app.get('/', (request, response) => {
      */
 
 //-------------------BOOK ROUTES----------------------    
-app.get('/book/all', book.getBooks) // gets all books
+app.get('/book', book.getBooks) // gets all books
 app.get('/book/:book_id', book.getBookById) // gets book by ID number
 app.get('/book/isbn/:isbn13', book.getBookByISBN) // gets book by ISBN
 app.get('/author', book.getAuthors) // gets all authors
@@ -44,29 +44,29 @@ app.get('/book/author/:author_id', book.getAuthorsBooks) // gets book by ISBN
 app.post('/book/add/:title&:isbn&:desc&:genre&:copiessold&:author&:publisher&:publishdateymd', book.createBook) //creates new book, author, & publisher
 app.post('/book/author/add/:author&:bio&:publisher', book.createAuthor) //creates new author
 
+
 //-------------------SEARCH ROUTES----------------------
 app.get('/search/all/:page&:per_page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
 app.get('/search/genre/:genre', search.getBooksByGenre) // Diplays all books of the specified genre
 app.get('/search/top/:number', search.getBooksTopSellers) // Diplays the top sellers. Takes in a variable for how many to display, in order by copies sold
-app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number
+app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number 
 
 //-------------------USER ROUTES----------------------
-app.post('/user/update/:field&:newValue&:username', users.UpdateUser)
-app.get('/user/credit_card/:email', users.GetCreditCards) //Gets all credit cards for user specified by email address
-//app.post('/user/credit_card/add/:credit_card&:exp_date&:code&:email', users.PostCreditCards) //Gets all credit cards for user specified by email address
+//app.post('/user/update/:field&:newValue&:username', users.updateUser)
+app.get('/user/credit_card/:email', users.getCreditCards) //Gets all credit cards for user specified by email address
+//app.post('/user/credit_card/:email&:card_number&:exp_date&:code', users.updateCreditCards) //Gets all credit cards for user specified by email address
 
 //-------------------CART ROUTES----------------------
-app.post('/cart/:customer_id&:book_id', cart.addCartItem) // Creates new cart for customer_id and updates book(s) in cart 
+app.post('/cart/:customer_id&:book_id', cart.addCartItem) // Creates new cart for customer_id with book and updates cart
 app.get('/cart/:customer_id', cart.getCartItems)  // Lists all book(s) in cart
 app.delete('/cart/:customer_id&:book_id', cart.deleteCartItem) // Deletes a book from cart
-app.delete('/cart/:customer_id', cart.deleteAllItems) // Deletes all books from cart 
+app.delete('/cart/:customer_id', cart.deleteAllItems) // Deletes cart
 
 //-------------------REVIEW ROUTES----------------------
-app.get('/review/all', review.getAllReviews)   //Gets all reviews and comments
-app.get('/review/:book_id', review.getReviewsfromBook)   //Gets all reviews and comments
-app.get('/review/avg/:book_id', review.getAvgRating) //Gets average rating of a book
-app.post('/review/add/:customer_id&:book_id&:star_rating&:review_comment', review.postReview) //Adds a review given a book_id and customer_id
-app.post('/rating/add/:customer_id&:book_id&:star_rating', review.postRating) //
+app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
+app.post('/rating/Add/:book_id&:star_rating&:customer_id', review.postRating)
+app.get('/review/all', review.getReviews)                 //Gets all Reviews and comments
+app.get('/rating/:book_id', review.getRating)
 
 //-------------------WISHLIST ROUTES----------------------
 //app.post('/wishlist/new/:customer_id&:wishlist_name', wishlist.createNewWishlist) // Creates new wishlist for customer_id with unique name

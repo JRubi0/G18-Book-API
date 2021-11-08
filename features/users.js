@@ -25,7 +25,7 @@ const pool = new Pool({
 	SELECT * FROM customer WHERE username LIKE "$username";
 */
 
-const UpdateUser = (req, res) => {
+const updateUser = (req, res) => {
   console.log(req.params.field + " " + req.params.newValue + " " + req.params.username);
   $custnum = parseInt(req.params.username);
   pool.query(`UPDATE customer SET ${req.params.field} = '${req.params.newValue}' WHERE customer_id = ${$custnum}`, (err, result) => 
@@ -40,7 +40,7 @@ const UpdateUser = (req, res) => {
   pool.end;
 } 
 
-const GetCreditCards = (req, res) => {
+const getCreditCards = (req, res) => {
   pool.query(`SELECT * FROM credit_card WHERE email = '${req.params.email}'`, (err, result) => 
   {
     if(!err)
@@ -51,20 +51,22 @@ const GetCreditCards = (req, res) => {
     }
   });
   pool.end;
-} 
-const PostCreditCards = (req, res) => {
-  //console.log(req.params.card_number/exp.date/code/email);
-  //add credit card for the user
-  pool.query(`INSERT INTO users (credit_card,exp_date,code,email) 
-                VALUES ${req.params.card_number}, ${req.params.exp_date}, ${req.params.code}, ${req.params.email}'`, (err, result) => 
+}
+
+
+const updateCreditCards = (req, res) => {
+  pool.query(`INSERT INTO credit_card (email, card_number, exp_date, code) 
+                VALUES '${req.params.email}','${req.params.card_number}', '${req.params.exp_date}', '${req.params.code}';
+                `, (err, result) =>
   {
     if(!err)
-    {
-      res.end;
+    { 
+      res.status(201).send(`Card Added`)
     }
   });
   pool.end;
-} 
+}
+
 /*
 	UPDATE customer SET $field = $newValue WHERE username = $username;
 
@@ -77,9 +79,10 @@ const PostCreditCards = (req, res) => {
 
 // Methods need to be created for all these
 module.exports = {
-    UpdateUser,
-    GetCreditCards,
-    PostCreditCards,
+    //users.js
+    updateUser,
+    getCreditCards,
+    updateCreditCards,
     //createNewUser,
     //getUserByEmail,
     //updateUserDetails,

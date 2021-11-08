@@ -7,65 +7,62 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 })
 
-// Creates a new Cart linked to customer_id that is empty
+// Creates a cart linked to customer_id with a book_id
 // cart_id generated and user does not need to know.
 const addCartItem = (req, res) => {
-  pool.query(`INSERT INTO cart (customer_id, book_id) 
-              VALUES ('${decodeURIComponent(req.params.customer_id)}', '${decodeURIComponent(req.params.book_id)}');
-              `, (err, result) => {
-    if (!err) {
-      res.status(201).send(`Book ` + (req.params.book_id) + ` was succcessfully added to cart.`)
-    }
+  pool.query(`INSERT INTO cart (customer_id, book_id)
+              VALUES ('${req.params.customer_id}', '${req.params.book_id}');
+              `, (err, result) => 
+              {
+                if(!err)
+                { 
+                  res.status(201).send(`Book added to cart`)
+                }
+            
+              });
+              pool.end; 
+            }
 
-  });
-  pool.end;
-}
-
-// Lists all the items in the cart.
+// Lists all the items in the cart
 const getCartItems = (req, res) => { 
   pool.query(`SELECT cart.book_id, book.title, book.price
               FROM cart
               INNER JOIN book
               ON book.book_id = cart.book_id
-              WHERE customer_id ='${req.params.customer_id}'
-              `, (err, result) => {
-    if (!err)
-    {
+              WHERE cart.customer_id ='${req.params.customer_id}'`, (err, result) => {
+    if(!err) {
       res.status(200).json(result.rows);
     }
   });
   pool.end;
 }
 
-// Deletes a book from customer's cart
-const deleteCartItem = (req, res) => {
+// Delete's one copy of a book from cart
+const deleteCartItem = (req, res) =>
+{
   pool.query(`DELETE FROM cart
               WHERE cart_id
-              IN (
-                SELECT cart_id
+              IN (SELECT cart_id
                 FROM cart
-                WHERE customer_id = '${req.params.customer_id}' 
-                AND book_id = '${req.params.book_id}'
+                WHERE customer_id ='${req.params.customer_id}' 
+                AND book_id ='${req.params.book_id}'
                 LIMIT 1)
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`A copy of book ` + (req.params.book_id) + ` was succcessfully removed from cart`) 
+      res.status(201).send(`DELETED`)
     }
-
   });
   pool.end;
 }
 
-// Deletes all books from customer's cart
+// Deletes cart
 const deleteAllItems = (req, res) => {
-  pool.query(`BEGIN;
-              DELETE FROM cart WHERE customer_id = '${req.params.customer_id}';
-              COMMIT;
+  pool.query(`DELETE FROM cart 
+              WHERE customer_id = '${req.params.customer_id}';
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Cart for customer ` + (req.params.customer_id) + ` was succcessfully deleted.`) 
+      res.status(201).send(`DELETED`) 
     }
-
   });
   pool.end;
 }
