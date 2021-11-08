@@ -49,7 +49,7 @@ const deleteCartItem = (req, res) => {
                 LIMIT 1)
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Cart ID: ${result.cart_id}`) // UPDATE "book_title removed from shopping cart"
+      res.status(201).send(`A copy of book ` + (req.params.book_id) + ` was succcessfully removed from cart`) 
     }
 
   });
@@ -63,7 +63,7 @@ const deleteAllItems = (req, res) => {
               COMMIT;
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`Cart ID: ${result.cart_id}`) // UPDATE "book_title removed from shopping cart"
+      res.status(201).send(`Cart for customer ` + (req.params.customer_id) + ` was succcessfully deleted.`) 
     }
 
   });
