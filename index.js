@@ -36,7 +36,7 @@ app.get('/', (request, response) => {
      */
 
 //-------------------BOOK ROUTES----------------------    
-app.get('/book', book.getBooks) // gets all books
+app.get('/book/all', book.getBooks) // gets all books
 app.get('/book/:book_id', book.getBookById) // gets book by ID number
 app.get('/book/isbn/:isbn13', book.getBookByISBN) // gets book by ISBN
 app.get('/author', book.getAuthors) // gets all authors
@@ -62,10 +62,11 @@ app.delete('/cart/:customer_id&:book_id', cart.deleteCartItem) // Deletes a book
 app.delete('/cart/:customer_id', cart.deleteAllItems) // Deletes all books from cart 
 
 //-------------------REVIEW ROUTES----------------------
-app.get('/review/all', review.getReviews)   //Gets all Reviews and comments
-app.get('/rating/:book_id', review.getAvgRating)
-app.post('/review/add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
-app.post('/rating/add/:book_id&:star_rating&:customer_id', review.postRating)
+app.get('/review/all', review.getAllReviews)   //Gets all reviews and comments
+app.get('/review/:book_id', review.getReviewsfromBook)   //Gets all reviews and comments
+app.get('/review/avg/:book_id', review.getAvgRating) //Gets average rating of a book
+app.post('/review/add/:customer_id&:book_id&:star_rating&:review_comment', review.postReview) //Adds a review given a book_id and customer_id
+app.post('/rating/add/:customer_id&:book_id&:star_rating', review.postRating) //
 
 //-------------------WISHLIST ROUTES----------------------
 //app.post('/wishlist/new/:customer_id&:wishlist_name', wishlist.createNewWishlist) // Creates new wishlist for customer_id with unique name
