@@ -92,7 +92,7 @@ const createBook = (req, res) => //Add identities
   {
     if(!err)
     { 
-      res.status(201).send(`Book added with ID: ${result.insertid}`)
+      res.status(201).send(`Book added with ISBN: ${decodeURIComponent(req.params.isbn)}`)
     }
 
   });
