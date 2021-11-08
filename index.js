@@ -11,7 +11,7 @@ const port = 3000
 const search = require("./features/search.js")       // feature #1 Book Browsing and Search
 const users = require("./features/users.js")         // feature #2 Profile Management
 const cart = require("./features/cart.js")           // feature #3 Shopping Cart
-const book = require("./book/book.js")               // feature #4 Book Details
+const book = require("./features/book.js")               // feature #4 Book Details
 const review = require("./features/reviews.js")      // feature #5 Book Rating and Commenting
 const wishlist = require("./features/wishlist.js")   // feature #6 Wish List Management
 
