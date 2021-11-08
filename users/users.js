@@ -59,7 +59,7 @@ const postCreditCards = (req, res) => {
                 VALUES ${req.params.card_number}, ${req.params.exp_date}, ${req.params.code}, ${req.params.email}'`, (err, result) => 
   {
     if(!err)
-    {
+    { 
       res.end;
     }
   });
@@ -77,7 +77,7 @@ const postCreditCards = (req, res) => {
 
 // Methods need to be created for all these
 module.exports = {
-    Updateuser,
+   // Updateuser,
     GetCreditCards,
     postCreditCards,
     //createNewUser,
