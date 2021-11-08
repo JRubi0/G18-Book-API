@@ -29,7 +29,8 @@ const getCartItems = (req, res) => {
               FROM cart
               INNER JOIN book
               ON book.book_id = cart.book_id
-              WHERE cart.customer_id ='${req.params.customer_id}'`, (err, result) => {
+              WHERE cart.customer_id ='${req.params.customer_id}'
+              `, (err, result) => {
     if(!err) {
       res.status(200).json(result.rows);
     }
