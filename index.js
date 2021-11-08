@@ -53,8 +53,9 @@ app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all boo
 
 //-------------------USER ROUTES----------------------
 //app.post('/user/update/:field&:newValue&:username', users.updateUser)
-app.get('/user/credit_card/:email', users.getCreditCards) //Gets all credit cards for user specified by email address
-//app.post('/user/credit_card/:email&:card_number&:exp_date&:code', users.updateCreditCards) //Gets all credit cards for user specified by email address
+app.get('/user/credit_card/:customer_id', users.getCreditCards) //Gets all credit cards for user specified by email address
+app.post('/user/credit_card/:customer_id&:card_number&:exp_date&:code', users.updateCreditCards)
+//app.post('/user/credit_card/:customer_id&:card_number&:exp_date&:code', users.updateCreditCards) //Gets all credit cards for user specified by email address
 
 //-------------------CART ROUTES----------------------
 app.post('/cart/:customer_id&:book_id', cart.addCartItem) // Creates new cart for customer_id with book and updates cart
