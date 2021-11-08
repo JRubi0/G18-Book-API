@@ -7,6 +7,7 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 })
 
+// Post/create new user with email and password only
 const createNewUser = (req, res) => {
   pool.query(`INSERT INTO customer (email, password)
               VALUES ('${req.params.email}', '${req.params.password}');`
@@ -19,6 +20,8 @@ const createNewUser = (req, res) => {
   });
   pool.end;
 }
+
+// Post/create new user with address information
 const createNewUser1 = (req, res) => {
   pool.query(`DO $$
               DECLARE newID integer;
@@ -38,7 +41,8 @@ const createNewUser1 = (req, res) => {
   });
   pool.end;
 }
-// Update to change all except email
+
+// Put/Update user info except email
 const updateUser = (req, res) => {
   pool.query(`INSERT INTO customer (email, password)
               VALUES ('${req.params.email}', '${req.params.password}');`
@@ -52,7 +56,7 @@ const updateUser = (req, res) => {
   pool.end;
 }
 
-// Get user information viewUserProfile
+// Get user information
 const viewUserProfile = (req, res) => {
   pool.query(`SELECT customer.email, customer.first_name, customer.last_name, address.street_number, address.street_name, address.city, address.country_id
                       FROM customer
@@ -71,7 +75,7 @@ const viewUserProfile = (req, res) => {
   pool.end;
 }
 
-
+// Get/ Retrieve user credit card info
 const getCreditCards = (req, res) => {
   pool.query(`SELECT * FROM credit_card WHERE customer_id = '${req.params.customer_id}'`, (err, result) => 
   {
@@ -84,7 +88,7 @@ const getCreditCards = (req, res) => {
   });
   pool.end;
 }
-
+ // Post/ Add user credit card information
 const updateCreditCards = (req, res) => {
   pool.query(`INSERT INTO credit_card (customer_id, card_number, exp_date, code)
               VALUES ('${req.params.customer_id}', '${req.params.card_number}', '${req.params.exp_date}', '${req.params.code}');
