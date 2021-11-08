@@ -52,10 +52,12 @@ app.get('/search/top/:number', search.getBooksTopSellers) // Diplays the top sel
 app.get('/search/rating/:rating', search.getBooksAboveRating) // Diplays all books with an average rating above the specified number 
 
 //-------------------USER ROUTES----------------------
-//app.post('/user/update/:field&:newValue&:username', users.updateUser)
+app.post('/user/:email&:password', users.createNewUser) // create user with email and password
+app.post('/user/:email&:password&:street_number&:street_name&:city&:country_id', users.createNewUser1) // create user with everything
+app.put('/user/:email&:first_name&:last_name', users.updateUser) // update first and last name for user
+app.get('/user/:email', users.viewUserProfile) // view user info
 app.get('/user/credit_card/:customer_id', users.getCreditCards) //Gets all credit cards for user specified by email address
 app.post('/user/credit_card/:customer_id&:card_number&:exp_date&:code', users.updateCreditCards)
-//app.post('/user/credit_card/:customer_id&:card_number&:exp_date&:code', users.updateCreditCards) //Gets all credit cards for user specified by email address
 
 //-------------------CART ROUTES----------------------
 app.post('/cart/:customer_id&:book_id', cart.addCartItem) // Creates new cart for customer_id with book and updates cart
