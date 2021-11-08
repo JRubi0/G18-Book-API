@@ -77,11 +77,8 @@ const PostCreditCards = (req, res) => {
 
 // Methods need to be created for all these
 module.exports = {
-<<<<<<< HEAD:users/users.js
-   // Updateuser,
-=======
+    //users.js
     UpdateUser,
->>>>>>> 0ba956630abcf33f1f4c3e00f0d364dd8d59e55e:features/users.js
     GetCreditCards,
     PostCreditCards,
     //createNewUser,
