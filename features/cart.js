@@ -22,7 +22,6 @@ const addCartItem = (req, res) => {
 }
 
 // Lists all the items in the cart.
-// THIS METHOD IS COMPLETE
 const getCartItems = (req, res) => { 
   pool.query(`SELECT cart.book_id, book.title, book.price
               FROM cart
@@ -39,10 +38,8 @@ const getCartItems = (req, res) => {
 }
 
 // Deletes a book from customer's cart
-// THIS METHOD has a few bugs that need to be worked out
 const deleteCartItem = (req, res) => {
-  pool.query(`BEGIN;
-              DELETE FROM cart
+  pool.query(`DELETE FROM cart
               WHERE cart_id
               IN (
                 SELECT cart_id
@@ -50,7 +47,6 @@ const deleteCartItem = (req, res) => {
                 WHERE customer_id = '${req.params.customer_id}' 
                 AND book_id = '${req.params.book_id}'
                 LIMIT 1)
-              COMMIT;
               `, (err, result) => {
     if (!err) {
       res.status(201).send(`Cart ID: ${result.cart_id}`) // UPDATE "book_title removed from shopping cart"
@@ -61,7 +57,6 @@ const deleteCartItem = (req, res) => {
 }
 
 // Deletes all books from customer's cart
-// THIS METHOD IS COMPLETE
 const deleteAllItems = (req, res) => {
   pool.query(`BEGIN;
               DELETE FROM cart WHERE customer_id = '${req.params.customer_id}';
