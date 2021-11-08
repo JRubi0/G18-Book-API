@@ -22,7 +22,7 @@ app.use(
     })
 );
 
-// base route that does nothing. just an example
+// base route that does nothing
 app.get('/', (request, response) => {
     response.json({ info: 'You need to specify a path for a valid query!' })
   })
