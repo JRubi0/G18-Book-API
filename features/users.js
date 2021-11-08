@@ -51,20 +51,22 @@ const getCreditCards = (req, res) => {
     }
   });
   pool.end;
-} 
+}
+
+
 const updateCreditCards = (req, res) => {
-  //console.log(req.params.card_number/exp.date/code/email);
-  //add credit card for the user
-  pool.query(`INSERT INTO users (email, credit_card, exp_date, code) 
-                VALUES ${req.params.email}, ${req.params.card_number}, ${req.params.exp_date}, ${req.params.code}'`, (err, result) => 
+  pool.query(`INSERT INTO credit_card (email, card_number, exp_date, code) 
+                VALUES '${req.params.email}','${req.params.card_number}', '${req.params.exp_date}', '${req.params.code}';
+                `, (err, result) =>
   {
     if(!err)
     { 
-      res.end;
+      res.status(201).send(`Card Added`)
     }
   });
   pool.end;
-} 
+}
+
 /*
 	UPDATE customer SET $field = $newValue WHERE username = $username;
 
