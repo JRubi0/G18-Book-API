@@ -109,6 +109,5 @@ module.exports = {
     updateUser,
     viewUserProfile,
     getCreditCards,
-    updateCreditCards,  
-
+    updateCreditCards
   }
