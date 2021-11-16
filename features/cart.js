@@ -50,7 +50,7 @@ const deleteCartItem = (req, res) =>
                 LIMIT 1)
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`DELETED`)
+      res.status(201).send(`Book removed from cart`)
     }
   });
   pool.end;
@@ -62,7 +62,7 @@ const deleteAllItems = (req, res) => {
               WHERE customer_id = '${req.params.customer_id}';
               `, (err, result) => {
     if (!err) {
-      res.status(201).send(`DELETED`) 
+      res.status(201).send(`All books removed from cart`) 
     }
   });
   pool.end;
