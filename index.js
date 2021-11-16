@@ -44,7 +44,6 @@ app.get('/book/author/:author_id', book.getAuthorsBooks) // gets book by ISBN
 app.post('/book/add/:title&:isbn&:desc&:genre&:copiessold&:author&:publisher&:publishdateymd', book.createBook) //creates new book, author, & publisher
 app.post('/book/author/add/:author&:bio&:publisher', book.createAuthor) //creates new author
 
-
 //-------------------SEARCH ROUTES----------------------
 app.get('/search/all/:page&:per_page', search.getBooks) // Diplays all books, one page at a time, 20 books per page
 app.get('/search/genre/:genre', search.getBooksByGenre) // Diplays all books of the specified genre

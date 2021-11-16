@@ -105,7 +105,7 @@ const createAuthor = (req, res) => //Add identities
   {
     if(!err)
     { 
-      res.status(201).send(`Author added with ID: ${result.insertid}`)
+      res.status(201).send(`Author added with name: ${decodeURIComponent(req.params.author)}`)
     }
 
   });
