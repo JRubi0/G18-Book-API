@@ -79,5 +79,5 @@ app.get('/rating/:book_id', review.getRating)
 
 // Start server
 app.listen(port, () => {
-    console.log(`App running on port ${port}.`)
+    console.log(`Book Store running on ${port}.`)
   })
