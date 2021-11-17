@@ -7,6 +7,8 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 })
 
+//-------------------CART QUERIES----------------------
+
 // Creates a cart linked to customer_id with a book_id
 // cart_id generated and user does not need to know.
 const addCartItem = (req, res) => {

@@ -6,6 +6,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 })
+
 /* change URLs to match methods
 //-------------------WISHLIST ROUTES THANT NEED COMPLETED----------------------
 //app.get('/wishlist/item', wishlist.getWishlistItems)  // call to list all book(s) in cart

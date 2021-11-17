@@ -65,10 +65,11 @@ app.delete('/cart/:customer_id&:book_id', cart.deleteCartItem) // Deletes a book
 app.delete('/cart/:customer_id', cart.deleteAllItems) // Deletes cart
 
 //-------------------REVIEW ROUTES----------------------
-app.post('/review/Add/:book_id&:Review_comment&:customer_id', review.postComment) //Adds a review given a book_id and customer_id
-app.post('/rating/Add/:book_id&:star_rating&:customer_id', review.postRating)
-app.get('/review/all', review.getReviews)                 //Gets all Reviews and comments
-app.get('/rating/:book_id', review.getRating)
+app.get('/rating/allreviews', review.getReviews) //Gets all reviews from all books
+app.get('/rating/specific/:book_id', review.getReviewsforBook)  //Gets reviews from a specific book
+app.get('/rating/avg/:book_id', review.getAvgRating)  //Gets average rating from a single book
+app.post('/rating/add/review&rating/:book_id&:star_rating&:review_comment&:customer_id', review.postReviewandRating) //Adds a review with a rating to a book
+app.post('/rating/add/rating/:book_id&:star_rating&:customer_id', review.postRating) //Adds a rating to a book
 
 //-------------------WISHLIST ROUTES----------------------
 //app.post('/wishlist/new/:customer_id&:wishlist_name', wishlist.createNewWishlist) // Creates new wishlist for customer_id with unique name

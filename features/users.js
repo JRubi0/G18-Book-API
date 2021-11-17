@@ -7,6 +7,8 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 })
 
+//-------------------USER QUERIES----------------------
+
 // Post/create new user with email and password only
 const createNewUser = (req, res) => {
   pool.query(`INSERT INTO customer (email, password)
