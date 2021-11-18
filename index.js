@@ -72,13 +72,12 @@ app.post('/rating/add/review&rating/:book_id&:star_rating&:review_comment&:custo
 app.post('/rating/add/rating/:book_id&:star_rating&:customer_id', review.postRating) //Adds a rating to a book
 
 //-------------------WISHLIST ROUTES----------------------
-//app.post('/wishlist/new/:customer_id&:wishlist_name', wishlist.createNewWishlist) // Creates new wishlist for customer_id with unique name
-//app.put('/wishlist/item/add', wishlist.addWishlistItem) // Add book(s) in wishlist 
-//app.get('/wishlist/item', wishlist.getWishlistItems)  // call to list all book(s) in cart
-//app.delete('/wishlist/item/delete', wishlist.deleteWishlistItem) // Remove a book from wishlist
-//app.put('/wishlist/item/tocart', wishlist.wishlistToCart) // move a book from wishlist to cart.
+app.post('/wishlist/:customer_id&:wishlist_name', wishlist.createNewWishlist) // Creates new wishlist for customer_id with unique name
+app.put('/wishlist/:book_id&:customer_id&:wishlist_name ', wishlist.addWishlistBook) // Add book to wishlist 
+app.get('/wishlist/item', wishlist.getWishlistItems)  // Lists all book(s) in cart
+//app.delete('/wishlist/item/delete', wishlist.deleteWishlistItem) // Remove a book from wishlist and move to cart
 
 // Start server
 app.listen(port, () => {
-    console.log(`Book Store running on ${port}.`)
+    console.log(`Book Store running on ${port}.`) 
   })
