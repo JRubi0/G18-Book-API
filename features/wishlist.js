@@ -7,23 +7,22 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 })
 
-/* change URLs to match methods
-//-------------------WISHLIST ROUTES THANT NEED COMPLETED----------------------
-//app.get('/wishlist/item', wishlist.getWishlistItems)  // call to list all book(s) in cart
-//app.delete('/wishlist/item/delete', wishlist.deleteWishlistItem) // Remove a book from wishlist
-//app.put('/wishlist/item/tocart', wishlist.wishlistToCart) // move a book from wishlist to cart.
+
+// put (update wishlist with a book) (addWishlistBook) /wishlist/:customer_id&:wishlist_name&:book_id 
+// delete (delete book from wishlist and move to shopping cart) (wishlistToCart) /wishlist/customer_id&:wishlist_name&:book_id
+// get (list books in wishlist) (getWishlistItems) /wishlist
 
 
 // Creates new wishlist linked to customer_id with unique name.
 // wishlist_id is generated in database but user does not need to know it.
 const createNewWishlist = (req, res) => { 
     pool.query(`BEGIN;
-                INSERT INTO wishlist (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
-                INSERT INTO wishlist (wishlist_name) VALUES ('${decodeURIComponent(req.params.wishlist_name)}');
+                INSERT INTO wishlist (customer_id, wishlist_name)
+                VALUES ('${decodeURIComponent(req.params.customer_id)}', ('${decodeURIComponent(req.params.wishlist_name)}'));
                 COMMIT;
                 `, (err, result) => {
       if (!err) {
-        res.status(201).send(`Wishlist Name: ${result.wishlist_name}`) // UPDATE "customer_firstname created wishlisted named wishlist_name"
+        res.status(201).send(`Wishlist created`) 
       }
   
     });
@@ -31,24 +30,58 @@ const createNewWishlist = (req, res) => {
 }
 
 // Add a book to a wishlist.
-// See about changing book_id variables to be an array?
-const addWishlistItem = (req, res) => { 
-    pool.query(`BEGIN;
-                INSERT INTO wishlist (customer_id) VALUES ('${decodeURIComponent(req.params.customer_id)}');
-                INSERT INTO wishlist (wishlist_name) VALUES ('${decodeURIComponent(req.params.wishlist_name)}');
-                COMMIT;
+// FIX CALL
+const addWishlistBook = (req, res) => { 
+  pool.query(`UPDATE wishlist
+              SET book_id = ('${decodeURIComponent(req.params.book_id)}')
+              WHERE (customer_id, wishlist_name) = ('${decodeURIComponent(req.params.customer_id)}', '${decodeURIComponent(req.params.wishlist_name)}');
                 `, (err, result) => {
       if (!err) {
-        res.status(201).send(`Book added: ${result.book_id}`) // UPDATE "book_title added to wishlist_name"
+        res.status(201).send(`Book added to wishlist`) 
       }
   
     });
     pool.end;
 }
-  
-*/
 
+// Lists all the items in wishlist
+// FIX CALL
+const getWishlistItems = (req, res) => { 
+  pool.query(`SELECT wishlist.book_id, book.title, book.price
+              FROM wishlist
+              INNER JOIN book
+              ON book.book_id = cart.book_id
+              WHERE (wishlist.customer_id, wishlist.wishlist_name) = ('${req.params.customer_id}', '${decodeURIComponent(req.params.wishlist_name)}')
+              `, (err, result) => {
+    if(!err) {
+      res.status(200).json(result.rows);
+    }
+  });
+  pool.end;
+}
+
+
+// Remove book 
+const deleteCartItem = (req, res) =>
+{
+  pool.query(`DELETE FROM cart
+              WHERE cart_id
+              IN (SELECT cart_id
+                FROM cart
+                WHERE customer_id ='${req.params.customer_id}' 
+                AND book_id ='${req.params.book_id}'
+                LIMIT 1)
+              `, (err, result) => {
+    if (!err) {
+      res.status(201).send(`Book removed from cart`)
+    }
+  });
+  pool.end;
+}
+*/
 module.exports = {
-    //createNewWishlist,
-    //addWishlistItem
+  createNewWishlist,
+  addWishlistBook,
+  getWishlistItems,
+  deleteCartItem
   }
